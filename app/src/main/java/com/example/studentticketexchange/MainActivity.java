@@ -1,3 +1,7 @@
+//Initial Login Screen
+//Slide 1 in App Powerpoint
+
+
 package com.example.studentticketexchange;
 
 import androidx.appcompat.app.AppCompatActivity;
