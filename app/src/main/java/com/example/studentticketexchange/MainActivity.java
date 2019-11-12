@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
 //kris
     //test seth
     //test mark
-    //test sean
+    //test sean2
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
