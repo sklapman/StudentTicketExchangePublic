@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView_main_title"
+        android:id="@+id/textView_choice_title"
         android:layout_width="wrap_content"
         android:layout_height="41dp"
         android:layout_marginTop="50dp"
@@ -19,32 +19,48 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_main_mlogo" />
+        app:layout_constraintTop_toBottomOf="@+id/image_choice_mlogo" />
 
     <ImageView
-        android:id="@+id/image_main_mlogo"
+        android:id="@+id/image_choice_mlogo"
         android:layout_width="230dp"
         android:layout_height="189dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/mlogo" />
 
     <Button
-        android:id="@+id/button_main_login"
+        android:id="@+id/button_choice_buy"
         style="@style/Widget.AppCompat.Button"
-        android:layout_width="wrap_content"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:background="#00274C"
-        android:padding="15dp"
-        android:text="@string/login"
+        android:padding="5dp"
+        android:text="@string/buy"
         android:textColor="#FFFFFF"
         android:textColorLink="#FFFFFF"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_main_title" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_choice_title" />
+
+    <Button
+        android:id="@+id/button_choice_sell"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="#00274C"
+        android:padding="5dp"
+        android:text="@string/sell"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_choice_buy" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
