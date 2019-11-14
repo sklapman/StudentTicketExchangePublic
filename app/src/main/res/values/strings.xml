@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">StudentTicketExchange</string>
+    <string name="AvailableTix">AVAILABLE TICKETS FOR THIS GAME</string>
 </resources>
