@@ -56,11 +56,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
         android:text="Game"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toTopOf="@+id/spinnerGames" />
 
     <Spinner
         android:id="@+id/spinnerGames"
@@ -74,5 +73,126 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    <TextView
+        android:id="@+id/textViewSection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Section"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextSection"
+        app:layout_constraintStart_toStartOf="@+id/textViewGame" />
+
+    <TextView
+        android:id="@+id/textViewRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Row"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextRow"
+        app:layout_constraintStart_toStartOf="@+id/textViewSection" />
+
+    <TextView
+        android:id="@+id/textViewQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quantity"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextQuantity"
+        app:layout_constraintStart_toStartOf="@+id/textViewRow" />
+
+    <EditText
+        android:id="@+id/editTextRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="#"
+        app:layout_constraintStart_toStartOf="@+id/editTextSection"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSection" />
+
+    <EditText
+        android:id="@+id/editTextSection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="#"
+        app:layout_constraintStart_toStartOf="@+id/spinnerGames"
+        app:layout_constraintTop_toBottomOf="@+id/textViewGame" />
+
+    <EditText
+        android:id="@+id/editTextQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="#"
+        app:layout_constraintStart_toStartOf="@+id/editTextRow"
+        app:layout_constraintTop_toBottomOf="@+id/editTextRow" />
+
+    <TextView
+        android:id="@+id/textViewPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Price"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextPrice"
+        app:layout_constraintStart_toStartOf="@+id/textViewQuantity" />
+
+    <EditText
+        android:id="@+id/editTextPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="$"
+        app:layout_constraintStart_toStartOf="@+id/editTextQuantity"
+        app:layout_constraintTop_toBottomOf="@+id/editTextQuantity" />
+
+    <Switch
+        android:id="@+id/switchStudentTicket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Student Ticket"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/textViewPrice"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPrice" />
+
+    <Switch
+        android:id="@+id/switchValidated"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Validated"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/switchStudentTicket"
+        app:layout_constraintTop_toBottomOf="@+id/switchStudentTicket" />
+
+    <Switch
+        android:id="@+id/switchNegotiable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Negotiable"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/switchValidated"
+        app:layout_constraintTop_toBottomOf="@+id/switchValidated" />
+
+    <Button
+        android:id="@+id/buttonDone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Done"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switchNegotiable" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
