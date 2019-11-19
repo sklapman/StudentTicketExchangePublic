@@ -29,16 +29,16 @@ public class SellTicketDetails extends AppCompatActivity implements
         setContentView(R.layout.activity_sell_ticket_details);
 
         //Implement listeners
-        editTextQuantity = findViewById(R.id.editTextQuantity);
-        editTextRow = findViewById(R.id.editTextRow);
-        editTextSection = findViewById(R.id.editTextSection);
-        switchStudentTicket = findViewById(R.id.switchStudentTicket);
-        switchValidated = findViewById(R.id.switchValidated);
-        switchNegotiable = findViewById(R.id.switchNegotiable);
-        radioButtonFootball = findViewById(R.id.radioButtonFootball);
-        radioButtonBasketball = findViewById(R.id.radioButtonBasketball);
-        radioButtonHockey = findViewById(R.id.radioButtonHockey);
-        buttonDone = findViewById(R.id.buttonDone);
+        editTextQuantity = findViewById(R.id.editTextSellQuantity);
+        editTextRow = findViewById(R.id.editTextSellRow);
+        editTextSection = findViewById(R.id.editTextSellSection);
+        switchStudentTicket = findViewById(R.id.switchSellStudentTicket);
+        switchValidated = findViewById(R.id.switchSellValidated);
+        switchNegotiable = findViewById(R.id.switchSellNegotiable);
+        radioButtonFootball = findViewById(R.id.radioSellButtonFootball);
+        radioButtonBasketball = findViewById(R.id.radioSellButtonBasketball);
+        radioButtonHockey = findViewById(R.id.radioSellButtonHockey);
+        buttonDone = findViewById(R.id.buttonSellDone);
 
         //Activate listeners
         buttonDone.setOnClickListener(this);
