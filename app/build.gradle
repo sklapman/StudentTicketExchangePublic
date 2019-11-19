@@ -7,7 +7,7 @@ android {
     defaultConfig {
         android.defaultConfig.vectorDrawables.useSupportLibrary = true
         applicationId "com.example.studentticketexchange"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
