@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "836854750852",
+    "firebase_url": "https://studentticketsexchange.firebaseio.com",
+    "project_id": "studentticketsexchange",
+    "storage_bucket": "studentticketsexchange.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836854750852:android:67b7b97cec6bce9d98acd1",
+        "android_client_info": {
+          "package_name": "com.example.studentticketexchange"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "836854750852-nq4tr53j0cdba3236t87102o9m8a59lg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.studentticketexchange",
+            "certificate_hash": "19f5c9cc39e19fdd9e6902fc1dd17c4da02041ef"
+          }
+        },
+        {
+          "client_id": "836854750852-38c06dqh3ktrsrarbo8jbscbuvhk46ah.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKkSPxEKaoNMt8sObwS7wNlziQhKz5_bo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "836854750852-38c06dqh3ktrsrarbo8jbscbuvhk46ah.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
