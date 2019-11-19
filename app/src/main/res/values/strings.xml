@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">StudentTicketExchange</string>
     <string name="AvailableTix">AVAILABLE TICKETS FOR THIS GAME</string>
+    <string name="buy">Buy</string>
+    <string name="sell">Sell</string>
+    <string name="login">UMICH LOGIN</string>
+    <string name="title">Student Ticket Exchange</string>
 </resources>
