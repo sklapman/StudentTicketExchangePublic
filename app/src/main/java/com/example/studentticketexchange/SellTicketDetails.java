@@ -1,4 +1,3 @@
-//testing to commit and push
 package com.example.studentticketexchange;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,10 +17,10 @@ public class SellTicketDetails extends AppCompatActivity implements
         RadioButton.OnCheckedChangeListener,
         View.OnClickListener {
 
-    Button buttonDone;
-    EditText editTextRow, editTextQuantity, editTextSection;
-    Switch switchStudentTicket, switchValidated, switchNegotiable;
-    RadioButton radioButtonFootball, radioButtonHockey, radioButtonBasketball;
+    Button buttonSellDone;
+    EditText editTextSellRow, editTextSellQuantity, editTextSellSection;
+    Switch switchSellStudentTicket, switchSellValidated, switchSellNegotiable;
+    RadioButton radioButtonSellFootball, radioButtonSellHockey, radioButtonSellBasketball;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,25 +28,25 @@ public class SellTicketDetails extends AppCompatActivity implements
         setContentView(R.layout.activity_sell_ticket_details);
 
         //Implement listeners
-        editTextQuantity = findViewById(R.id.editTextSellQuantity);
-        editTextRow = findViewById(R.id.editTextSellRow);
-        editTextSection = findViewById(R.id.editTextSellSection);
-        switchStudentTicket = findViewById(R.id.switchSellStudentTicket);
-        switchValidated = findViewById(R.id.switchSellValidated);
-        switchNegotiable = findViewById(R.id.switchSellNegotiable);
-        radioButtonFootball = findViewById(R.id.radioSellButtonFootball);
-        radioButtonBasketball = findViewById(R.id.radioSellButtonBasketball);
-        radioButtonHockey = findViewById(R.id.radioSellButtonHockey);
-        buttonDone = findViewById(R.id.buttonSellDone);
+        editTextSellQuantity = findViewById(R.id.editTextSellQuantity);
+        editTextSellRow = findViewById(R.id.editTextSellRow);
+        editTextSellSection = findViewById(R.id.editTextSellSection);
+        switchSellStudentTicket = findViewById(R.id.switchSellStudentTicket);
+        switchSellValidated = findViewById(R.id.switchSellValidated);
+        switchSellNegotiable = findViewById(R.id.switchSellNegotiable);
+        radioButtonSellFootball = findViewById(R.id.radioSellButtonFootball);
+        radioButtonSellBasketball = findViewById(R.id.radioSellButtonBasketball);
+        radioButtonSellHockey = findViewById(R.id.radioSellButtonHockey);
+        buttonSellDone = findViewById(R.id.buttonSellDone);
 
         //Activate listeners
-        buttonDone.setOnClickListener(this);
-        editTextQuantity.setOnEditorActionListener(this);
-        editTextRow.setOnEditorActionListener(this);
-        editTextSection.setOnEditorActionListener(this);
-        radioButtonHockey.setOnCheckedChangeListener(this);
-        radioButtonBasketball.setOnCheckedChangeListener(this);
-        radioButtonFootball.setOnCheckedChangeListener(this);
+        buttonSellDone.setOnClickListener(this);
+        editTextSellQuantity.setOnEditorActionListener(this);
+        editTextSellRow.setOnEditorActionListener(this);
+        editTextSellSection.setOnEditorActionListener(this);
+        radioButtonSellHockey.setOnCheckedChangeListener(this);
+        radioButtonSellBasketball.setOnCheckedChangeListener(this);
+        radioButtonSellFootball.setOnCheckedChangeListener(this);
 
     }
 

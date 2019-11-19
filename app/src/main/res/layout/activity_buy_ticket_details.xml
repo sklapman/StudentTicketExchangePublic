@@ -6,4 +6,237 @@
     android:layout_height="match_parent"
     tools:context=".BuyTicketDetails">
 
+    <TextView
+        android:id="@+id/textViewBuyNegotiable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Negotiable"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewBuyValidated" />
+
+    <TextView
+        android:id="@+id/textViewBuyValidated"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Validated"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewBuyStudentTicket" />
+
+    <TextView
+        android:id="@+id/textViewBuyStudentTicket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Student Ticket"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewBuyPrice" />
+
+    <TextView
+        android:id="@+id/textViewBuyPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Price"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewBuyQuantity" />
+
+    <TextView
+        android:id="@+id/textViewBuyQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Quantity"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewBuyRow" />
+
+    <TextView
+        android:id="@+id/textViewBuyRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Row"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewBuySection" />
+
+    <TextView
+        android:id="@+id/textViewBuySection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Section"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewBuyGame" />
+
+    <TextView
+        android:id="@+id/textViewBuyGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Game"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewBuySport" />
+
+    <TextView
+        android:id="@+id/textViewBuySport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:text="Sport"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonBuyBack" />
+
+    <Button
+        android:id="@+id/buttonBuyBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonBuyContactSeller"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:text="Contact Seller"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewBuyNegotiable" />
+
+    <TextView
+        android:id="@+id/textViewBuySportSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="Sport Selected"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/textViewBuyStudentTicket"
+        app:layout_constraintTop_toTopOf="@+id/textViewBuySport" />
+
+    <TextView
+        android:id="@+id/textViewBuyGameSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="Game Selected"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/textViewBuyStudentTicket"
+        app:layout_constraintTop_toTopOf="@+id/textViewBuyGame" />
+
+    <TextView
+        android:id="@+id/textViewBuySectionSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="Section Selected"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/textViewBuyStudentTicket"
+        app:layout_constraintTop_toTopOf="@+id/textViewBuySection" />
+
+    <TextView
+        android:id="@+id/textViewBuyRowSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="Row Selected"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/textViewBuyStudentTicket"
+        app:layout_constraintTop_toTopOf="@+id/textViewBuyRow" />
+
+    <TextView
+        android:id="@+id/textViewBuyQuantitySelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="Quantity Selected"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/textViewBuyStudentTicket"
+        app:layout_constraintTop_toTopOf="@+id/textViewBuyQuantity" />
+
+    <TextView
+        android:id="@+id/textViewBuyPriceSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="Price Selected"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/textViewBuyStudentTicket"
+        app:layout_constraintTop_toTopOf="@+id/textViewBuyPrice" />
+
+    <TextView
+        android:id="@+id/textViewBuyStudentTicketSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="Yes/No"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/textViewBuyStudentTicket"
+        app:layout_constraintTop_toTopOf="@+id/textViewBuyStudentTicket" />
+
+    <TextView
+        android:id="@+id/textViewBuyValidatedSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="Yes/No"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/textViewBuyStudentTicket"
+        app:layout_constraintTop_toTopOf="@+id/textViewBuyValidated" />
+
+    <TextView
+        android:id="@+id/textViewBuyNegotiableSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="Yes/No"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/textViewBuyStudentTicket"
+        app:layout_constraintTop_toTopOf="@+id/textViewBuyNegotiable" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

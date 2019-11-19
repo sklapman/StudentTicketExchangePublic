@@ -108,7 +108,6 @@
         android:layout_marginTop="20dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="#"
         app:layout_constraintStart_toStartOf="@+id/editTextSellSection"
         app:layout_constraintTop_toBottomOf="@+id/editTextSellSection" />
 
@@ -119,7 +118,6 @@
         android:layout_marginTop="20dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="#"
         app:layout_constraintStart_toStartOf="@+id/spinnerSellGames"
         app:layout_constraintTop_toBottomOf="@+id/textViewSellGame" />
 
@@ -130,7 +128,6 @@
         android:layout_marginTop="20dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="#"
         app:layout_constraintStart_toStartOf="@+id/editTextSellRow"
         app:layout_constraintTop_toBottomOf="@+id/editTextSellRow" />
 
@@ -149,8 +146,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
+        android:hint="$"
         android:inputType="textPersonName"
-        android:text="$"
         app:layout_constraintStart_toStartOf="@+id/editTextSellQuantity"
         app:layout_constraintTop_toBottomOf="@+id/editTextSellQuantity" />
 
