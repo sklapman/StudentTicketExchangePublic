@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "836854750852-m30p4vofqnsk6j2854vqfk1n4b9936m8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.studentticketexchange",
+            "certificate_hash": "624b9bc1ced4735ab75171f7e104fa8fa686bf0e"
+          }
+        },
+        {
           "client_id": "836854750852-nq4tr53j0cdba3236t87102o9m8a59lg.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
