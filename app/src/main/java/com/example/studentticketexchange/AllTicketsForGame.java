@@ -17,6 +17,6 @@ public class AllTicketsForGame extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        
+
     }
 }
