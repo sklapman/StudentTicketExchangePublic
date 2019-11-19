@@ -6,4 +6,7 @@
     <string name="login">UMICH LOGIN</string>
     <string name="title">Student Ticket Exchange</string>
     <string name="schedule">SCHEDULE</string>
+    <string name="football">Football</string>
+    <string name="mens_basketball">Men\'s Basketball</string>
+    <string name="hockey">Hockey</string>
 </resources>
