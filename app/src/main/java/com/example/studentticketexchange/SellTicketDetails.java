@@ -13,20 +13,32 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class SellTicketDetails extends AppCompatActivity implements
         TextView.OnEditorActionListener,
         RadioButton.OnCheckedChangeListener,
-        View.OnClickListener {
+        View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
 
     Button buttonSellDone;
     EditText editTextSellRow, editTextSellQuantity, editTextSellSection;
     Switch switchSellStudentTicket, switchSellValidated, switchSellNegotiable;
     RadioButton radioButtonSellFootball, radioButtonSellHockey, radioButtonSellBasketball;
+
+    private BottomNavigationView mMainNav;
+    private FrameLayout mMainFrame;
+
+    private ProfileFragment profileFragment;
+    private ScheduleFragment scheduleFragment;
+    private SellFragment sellFragment;
+    private InboxFragment inboxFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +65,16 @@ public class SellTicketDetails extends AppCompatActivity implements
         radioButtonSellHockey.setOnCheckedChangeListener(this);
         radioButtonSellBasketball.setOnCheckedChangeListener(this);
         radioButtonSellFootball.setOnCheckedChangeListener(this);
+
+        mMainNav = (BottomNavigationView) findViewById(R.id.id_Navbar);
+        mMainFrame = (FrameLayout) findViewById(R.id.id_frame);
+
+        profileFragment = new ProfileFragment();
+        scheduleFragment = new ScheduleFragment();
+        sellFragment = new SellFragment();
+        inboxFragment = new InboxFragment();
+
+        mMainNav.setOnNavigationItemSelectedListener(this);
 
     }
 
@@ -129,5 +151,34 @@ public class SellTicketDetails extends AppCompatActivity implements
 
         return super.onOptionsItemSelected(item);
 
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.itemInbox:
+                Intent InboxIntent = new Intent(this, Inbox.class);
+                startActivity(InboxIntent);
+                return true;
+
+            case R.id.itemProfile:
+                Intent ProfileIntent = new Intent(this, Profile.class);
+                startActivity(ProfileIntent);
+                return true;
+
+            case R.id.itemSchedule:
+                Intent ScheduleIntent = new Intent(this, Schedule.class);
+                startActivity(ScheduleIntent);
+                return true;
+
+            case R.id.itemSell:
+                Intent SellIntent = new Intent(this, SellTicketDetails.class);
+                startActivity(SellIntent);
+                return true;
+
+            default:
+                return false;
+
+        }
     }
 }

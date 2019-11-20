@@ -139,4 +139,13 @@
         app:layout_constraintTop_toTopOf="@+id/button_sched_hockey"
         app:srcCompat="@drawable/ic_sports_hockey_24px" />
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/id_Navbar"
+        android:layout_height="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/nav_botton_menu"
+        android:layout_width="match_parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

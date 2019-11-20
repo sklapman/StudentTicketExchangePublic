@@ -52,7 +52,7 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
         basketballButton.setOnClickListener(this);
         hockeyButton.setOnClickListener(this);
 
-       /* mMainNav = (BottomNavigationView) findViewById(R.id.id_Navbar);
+        mMainNav = (BottomNavigationView) findViewById(R.id.id_Navbar);
         mMainFrame = (FrameLayout) findViewById(R.id.id_frame);
 
         profileFragment = new ProfileFragment();
@@ -60,7 +60,7 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
         sellFragment = new SellFragment();
         inboxFragment = new InboxFragment();
 
-        mMainNav.setOnNavigationItemSelectedListener(this); */
+        mMainNav.setOnNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -96,30 +96,29 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.itemInbox:
-                setFragment(inboxFragment);
+                Intent InboxIntent = new Intent(this, Inbox.class);
+                startActivity(InboxIntent);
                 return true;
 
             case R.id.itemProfile:
-                setFragment(profileFragment);
+                Intent ProfileIntent = new Intent(this, Profile.class);
+                startActivity(ProfileIntent);
                 return true;
 
             case R.id.itemSchedule:
-                setFragment(scheduleFragment);
+                Intent ScheduleIntent = new Intent(this, Schedule.class);
+                startActivity(ScheduleIntent);
                 return true;
 
             case R.id.itemSell:
-                setFragment(sellFragment);
+                Intent SellIntent = new Intent(this, SellTicketDetails.class);
+                startActivity(SellIntent);
                 return true;
 
             default:
                 return false;
-        }
-    }
 
-    private void setFragment(Fragment fragment) {
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.id_frame, fragment);
-        fragmentTransaction.commit();
+        }
 
     }
 

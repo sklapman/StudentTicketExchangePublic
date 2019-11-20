@@ -9,16 +9,36 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.example.studentticketexchange.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class AllTicketsForGame extends AppCompatActivity implements View.OnClickListener {
+public class AllTicketsForGame extends AppCompatActivity implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
+
+    private BottomNavigationView mMainNav;
+    private FrameLayout mMainFrame;
+
+    private ProfileFragment profileFragment;
+    private ScheduleFragment scheduleFragment;
+    private SellFragment sellFragment;
+    private InboxFragment inboxFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_tickets_for_game);
+        mMainNav = (BottomNavigationView) findViewById(R.id.id_Navbar);
+        mMainFrame = (FrameLayout) findViewById(R.id.id_frame);
+
+        profileFragment = new ProfileFragment();
+        scheduleFragment = new ScheduleFragment();
+        sellFragment = new SellFragment();
+        inboxFragment = new InboxFragment();
+
+        mMainNav.setOnNavigationItemSelectedListener(this);
+
     }
 
     @Override
@@ -84,5 +104,35 @@ public class AllTicketsForGame extends AppCompatActivity implements View.OnClick
 
         return super.onOptionsItemSelected(item);
 
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+        switch (menuItem.getItemId()) {
+            case R.id.itemInbox:
+                Intent InboxIntent = new Intent(this, Inbox.class);
+                startActivity(InboxIntent);
+                return true;
+
+            case R.id.itemProfile:
+                Intent ProfileIntent = new Intent(this, Profile.class);
+                startActivity(ProfileIntent);
+                return true;
+
+            case R.id.itemSchedule:
+                Intent ScheduleIntent = new Intent(this, Schedule.class);
+                startActivity(ScheduleIntent);
+                return true;
+
+            case R.id.itemSell:
+                Intent SellIntent = new Intent(this, SellTicketDetails.class);
+                startActivity(SellIntent);
+                return true;
+
+            default:
+                return false;
+
+        }
     }
 }
