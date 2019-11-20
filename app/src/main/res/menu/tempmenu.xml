@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/itemAllTicketsForGame"
+        android:title="All Tickets for Game" />
+    <item
+        android:id="@+id/itemTempBuyTixDetails"
+        android:title="Buy Ticket Details" />
+    <item
+        android:id="@+id/itemChat"
+        android:title="Chat" />
+    <item
+        android:id="@+id/itemChoiceBuySell"
+        android:title="Choice Buy Sell" />
+    <item
+        android:id="@+id/itemInbox"
+        android:title="Inbox" />
+    <item
+        android:id="@+id/itemMainOpen"
+        android:title="Landing Page" />
+    <item
+        android:id="@+id/itemProfile"
+        android:title="Profile" />
+    <item
+        android:id="@+id/itemSchedule"
+        android:title="Schedule" />
+</menu>
