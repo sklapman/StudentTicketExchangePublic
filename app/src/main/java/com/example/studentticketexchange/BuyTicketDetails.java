@@ -19,7 +19,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class BuyTicketDetails extends AppCompatActivity implements
         TextView.OnEditorActionListener,
-        View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
+        View.OnClickListener,
+        BottomNavigationView.OnNavigationItemSelectedListener {
 
     Button buttonBuyBack, buttonBuyContactSeller;
     TextView textViewBuySportSelected, textViewBuyGameSelected, textViewBuySectionSelected,
@@ -72,6 +73,16 @@ public class BuyTicketDetails extends AppCompatActivity implements
 
     @Override
     public void onClick(View view) {
+
+        if (view == buttonBuyBack) {
+            //navigation between pages with buttons
+            Intent portalIntent = new Intent(this, AllTicketsForGame.class);
+            startActivity(portalIntent);
+
+        } else if (view == buttonBuyContactSeller) {
+
+        }
+
 
     }
 
