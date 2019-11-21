@@ -19,7 +19,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class BuyTicketDetails extends AppCompatActivity implements
         TextView.OnEditorActionListener,
-        View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
+        View.OnClickListener,
+        BottomNavigationView.OnNavigationItemSelectedListener {
 
     Button buttonBuyBack, buttonBuyContactSeller;
     TextView textViewBuySportSelected, textViewBuyGameSelected, textViewBuySectionSelected,
