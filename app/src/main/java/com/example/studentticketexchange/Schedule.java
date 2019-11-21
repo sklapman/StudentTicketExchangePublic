@@ -21,7 +21,7 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Schedule extends AppCompatActivity implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
-    Button footballButton, basketballButton, hockeyButton;
+    Button footballButton, basketballButton, hockeyButton, currentSelected;
     TextView footballTextView, basketballTextView, hockeyTextView;
     Drawable greyOutline, blueOutline;
 
@@ -44,6 +44,7 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
         footballTextView = findViewById(R.id.textView_sched_football);
         basketballTextView = findViewById(R.id.textView_sched_basketball);
         hockeyTextView = findViewById(R.id.textView_sched_hockey);
+        currentSelected = null;
 
         greyOutline = getResources().getDrawable(R.drawable.button_grey_border);
         blueOutline = getResources().getDrawable(R.drawable.button_blue_border);
@@ -65,6 +66,10 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
 
     @Override
     public void onClick(View view) {
+        if(view == currentSelected){
+            return;
+        }
+
         if (view == footballButton) {
             footballTextView.setTypeface(null, Typeface.BOLD);
             basketballTextView.setTypeface(null, Typeface.NORMAL);
