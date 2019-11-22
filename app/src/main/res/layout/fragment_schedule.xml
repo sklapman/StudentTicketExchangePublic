@@ -17,7 +17,7 @@
         android:layout_marginRight="4dp"
         android:background="@drawable/button_grey_border"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline_sched_rightThird"
         app:layout_constraintTop_toBottomOf="@+id/textView_schedule_title" />
 
     <TextView
@@ -44,19 +44,19 @@
         android:layout_marginEnd="4dp"
         android:layout_marginRight="4dp"
         android:background="@drawable/button_grey_border"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_sched_leftThird"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_schedule_title" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
+        android:id="@+id/guideline_sched_leftThird"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.33333333333" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
+        android:id="@+id/guideline_sched_rightThird"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -72,8 +72,8 @@
         android:layout_marginEnd="4dp"
         android:layout_marginRight="4dp"
         android:background="@drawable/button_grey_border"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_sched_rightThird"
+        app:layout_constraintStart_toStartOf="@+id/guideline_sched_leftThird"
         app:layout_constraintTop_toBottomOf="@+id/textView_schedule_title" />
 
     <TextView
@@ -83,7 +83,7 @@
         android:layout_marginTop="75dp"
         android:gravity="center"
         android:text="@string/football"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_sched_leftThird"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/button_sched_football" />
 
@@ -94,8 +94,8 @@
         android:layout_marginTop="75dp"
         android:gravity="center"
         android:text="@string/mens_basketball"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_sched_rightThird"
+        app:layout_constraintStart_toStartOf="@+id/guideline_sched_leftThird"
         app:layout_constraintTop_toTopOf="@+id/button_sched_basketball" />
 
     <TextView
@@ -106,7 +106,7 @@
         android:gravity="center"
         android:text="@string/hockey"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline_sched_rightThird"
         app:layout_constraintTop_toTopOf="@+id/button_sched_hockey" />
 
     <ImageView
@@ -115,8 +115,8 @@
         android:layout_height="72dp"
         android:layout_marginTop="4dp"
         android:tint="#FA8320"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_sched_rightThird"
+        app:layout_constraintStart_toStartOf="@+id/guideline_sched_leftThird"
         app:layout_constraintTop_toTopOf="@+id/button_sched_basketball"
         app:srcCompat="@drawable/ic_sports_basketball_24px" />
 
@@ -125,7 +125,7 @@
         android:layout_width="96dp"
         android:layout_height="79dp"
         android:tint="#8B4513"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_sched_leftThird"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/button_sched_football"
         app:srcCompat="@drawable/ic_sports_football_24px" />
@@ -135,7 +135,7 @@
         android:layout_width="100dp"
         android:layout_height="81dp"
         app:layout_constraintEnd_toEndOf="@+id/button_sched_hockey"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline_sched_rightThird"
         app:layout_constraintTop_toTopOf="@+id/button_sched_hockey"
         app:srcCompat="@drawable/ic_sports_hockey_24px" />
 
