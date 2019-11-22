@@ -141,13 +141,14 @@
         app:srcCompat="@drawable/ic_sports_hockey_24px" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_shedule"
-        android:layout_width="414dp"
-        android:layout_height="566dp"
-        android:layout_marginTop="8dp"
+        android:id="@+id/recyclerView_schedule"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintBottom_toTopOf="@id/id_Navbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_sched_hockey" />
+        app:layout_constraintTop_toBottomOf="@id/button_sched_basketball" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/id_Navbar"
