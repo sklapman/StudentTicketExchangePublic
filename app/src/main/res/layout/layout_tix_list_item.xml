@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <CheckBox
+        android:id="@+id/checkBoxStudentTix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/textViewSection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/checkBoxStudentTix"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:text="Section" />
+
+    <TextView
+        android:id="@+id/textViewRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/textViewSection"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:text="Row" />
+
+    <TextView
+        android:id="@+id/textViewQty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/textViewRow"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:text="Qty" />
+
+    <TextView
+        android:id="@+id/textViewPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/textViewQty"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:text="Price" />
+</RelativeLayout>
