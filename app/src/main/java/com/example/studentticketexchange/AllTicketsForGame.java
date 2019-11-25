@@ -15,38 +15,38 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.example.studentticketexchange.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+//import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
-public class AllTicketsForGame extends AppCompatActivity implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
+public class AllTicketsForGame extends AppCompatActivity implements View.OnClickListener {
 
-    private BottomNavigationView mMainNav;
-    private FrameLayout mMainFrame;
+//    private BottomNavigationView mMainNav;
+//    private FrameLayout mMainFrame;
 
-    private ProfileFragment profileFragment;
-    private ScheduleFragment scheduleFragment;
-    private SellFragment sellFragment;
-    private InboxFragment inboxFragment;
+//    private ProfileFragment profileFragment;
+//    private ScheduleFragment scheduleFragment;
+//    private SellFragment sellFragment;
+//    private InboxFragment inboxFragment;
 
-    private ArrayList<Listing> listings;
+//    private ArrayList<Listing> listings;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_tickets_for_game);
-        mMainNav = (BottomNavigationView) findViewById(R.id.id_Navbar);
-        mMainFrame = (FrameLayout) findViewById(R.id.id_frame);
+//        mMainNav = (BottomNavigationView) findViewById(R.id.id_Navbar);
+//        mMainFrame = (FrameLayout) findViewById(R.id.id_frame);
 
-        profileFragment = new ProfileFragment();
-        scheduleFragment = new ScheduleFragment();
-        sellFragment = new SellFragment();
-        inboxFragment = new InboxFragment();
+//        profileFragment = new ProfileFragment();
+//        scheduleFragment = new ScheduleFragment();
+//        sellFragment = new SellFragment();
+//        inboxFragment = new InboxFragment();
 
-        mMainNav.setOnNavigationItemSelectedListener(this);
+//        mMainNav.setOnNavigationItemSelectedListener(this);
 
-        initListings();
+//        initListings();
     }
 
     @Override
@@ -114,46 +114,46 @@ public class AllTicketsForGame extends AppCompatActivity implements View.OnClick
 
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+//    @Override
+//    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+//
+//        switch (menuItem.getItemId()) {
+//            case R.id.itemInbox:
+//                Intent InboxIntent = new Intent(this, Inbox.class);
+//                startActivity(InboxIntent);
+//                return true;
+//
+//            case R.id.itemProfile:
+//                Intent ProfileIntent = new Intent(this, Profile.class);
+//                startActivity(ProfileIntent);
+//                return true;
+//
+//            case R.id.itemSchedule:
+//                Intent ScheduleIntent = new Intent(this, Schedule.class);
+//                startActivity(ScheduleIntent);
+//                return true;
+//
+//            case R.id.itemSell:
+//                Intent SellIntent = new Intent(this, SellTicketDetails.class);
+//                startActivity(SellIntent);
+//                return true;
+//
+//            default:
+//                return false;
+//
+//        }
+//    }
 
-        switch (menuItem.getItemId()) {
-            case R.id.itemInbox:
-                Intent InboxIntent = new Intent(this, Inbox.class);
-                startActivity(InboxIntent);
-                return true;
-
-            case R.id.itemProfile:
-                Intent ProfileIntent = new Intent(this, Profile.class);
-                startActivity(ProfileIntent);
-                return true;
-
-            case R.id.itemSchedule:
-                Intent ScheduleIntent = new Intent(this, Schedule.class);
-                startActivity(ScheduleIntent);
-                return true;
-
-            case R.id.itemSell:
-                Intent SellIntent = new Intent(this, SellTicketDetails.class);
-                startActivity(SellIntent);
-                return true;
-
-            default:
-                return false;
-
-        }
-    }
-
-    private void initListings() {
-        listings = new ArrayList<>();
-        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "330","Selling together"));
-        initRecyclerView();
-    }
-
-    private void initRecyclerView() {
-        RecyclerView recyclerViewTix = findViewById(R.id.recyclerViewTix);
-        RecyclerViewAdapterAllTix recyclerViewAdapterAllTix = new RecyclerViewAdapterAllTix(listings, this);
-        recyclerViewTix.setAdapter(recyclerViewAdapterAllTix);
-        recyclerViewTix.setLayoutManager(new LinearLayoutManager(this));
-    }
+//    private void initListings() {
+//        listings = new ArrayList<>();
+//        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "330","Selling together"));
+//        initRecyclerView();
+//    }
+//
+//    private void initRecyclerView() {
+//        RecyclerView recyclerViewTix = findViewById(R.id.recyclerViewTix);
+//        RecyclerViewAdapterAllTix recyclerViewAdapterAllTix = new RecyclerViewAdapterAllTix(listings, this);
+//        recyclerViewTix.setAdapter(recyclerViewAdapterAllTix);
+//        recyclerViewTix.setLayoutManager(new LinearLayoutManager(this));
+//    }
 }
