@@ -2,6 +2,8 @@ package com.example.studentticketexchange;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +17,8 @@ import android.widget.Toast;
 import com.example.studentticketexchange.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+
 public class AllTicketsForGame extends AppCompatActivity implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
 
     private BottomNavigationView mMainNav;
@@ -24,6 +28,9 @@ public class AllTicketsForGame extends AppCompatActivity implements View.OnClick
     private ScheduleFragment scheduleFragment;
     private SellFragment sellFragment;
     private InboxFragment inboxFragment;
+
+    private ArrayList<Listing> listings;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +46,7 @@ public class AllTicketsForGame extends AppCompatActivity implements View.OnClick
 
         mMainNav.setOnNavigationItemSelectedListener(this);
 
+        initListings();
     }
 
     @Override
@@ -134,5 +142,18 @@ public class AllTicketsForGame extends AppCompatActivity implements View.OnClick
                 return false;
 
         }
+    }
+
+    private void initListings() {
+        listings = new ArrayList<>();
+        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "330","Selling together"));
+        initRecyclerView();
+    }
+
+    private void initRecyclerView() {
+        RecyclerView recyclerViewTix = findViewById(R.id.recyclerViewTix);
+        RecyclerViewAdapterAllTix recyclerViewAdapterAllTix = new RecyclerViewAdapterAllTix(listings, this);
+        recyclerViewTix.setAdapter(recyclerViewAdapterAllTix);
+        recyclerViewTix.setLayoutManager(new LinearLayoutManager(this));
     }
 }
