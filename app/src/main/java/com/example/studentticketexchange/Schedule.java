@@ -15,15 +15,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Schedule extends AppCompatActivity implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
-    Button footballButton, basketballButton, hockeyButton;
-    TextView footballTextView, basketballTextView, hockeyTextView;
+    Button footballButton, basketballButton, hockeyButton, currentSelected;
+    TextView subtitle, footballTextView, basketballTextView, hockeyTextView;
     Drawable greyOutline, blueOutline;
+    ImageView footballSelect, basketballSelect, hockeySelect;
 
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
@@ -44,6 +46,11 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
         footballTextView = findViewById(R.id.textView_sched_football);
         basketballTextView = findViewById(R.id.textView_sched_basketball);
         hockeyTextView = findViewById(R.id.textView_sched_hockey);
+        footballSelect = findViewById(R.id.imageView_football_selectbar);
+        basketballSelect = findViewById(R.id.imageView_basketball_selectbar);
+        hockeySelect = findViewById(R.id.imageView_hockey_selectbar);
+        subtitle = findViewById(R.id.textView_schedule_subtitle);
+        currentSelected = null;
 
         greyOutline = getResources().getDrawable(R.drawable.button_grey_border);
         blueOutline = getResources().getDrawable(R.drawable.button_blue_border);
@@ -65,7 +72,24 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
 
     @Override
     public void onClick(View view) {
-        if (view == footballButton) {
+        if(view == currentSelected){
+            footballTextView.setTypeface(null, Typeface.NORMAL);
+            basketballTextView.setTypeface(null, Typeface.NORMAL);
+            hockeyTextView.setTypeface(null, Typeface.NORMAL);
+
+            footballButton.setBackground(greyOutline);
+            basketballButton.setBackground(greyOutline);
+            hockeyButton.setBackground(greyOutline);
+
+            footballSelect.setImageResource(R.color.white);
+            basketballSelect.setImageResource(R.color.white);
+            hockeySelect.setImageResource(R.color.white);
+
+            subtitle.setText("UPCOMING GAMES");
+
+            currentSelected = null;
+        }
+        else if (view == footballButton) {
             footballTextView.setTypeface(null, Typeface.BOLD);
             basketballTextView.setTypeface(null, Typeface.NORMAL);
             hockeyTextView.setTypeface(null, Typeface.NORMAL);
@@ -73,6 +97,14 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
             footballButton.setBackground(blueOutline);
             basketballButton.setBackground(greyOutline);
             hockeyButton.setBackground(greyOutline);
+
+            footballSelect.setImageResource(R.color.michiganBlue);
+            basketballSelect.setImageResource(R.color.white);
+            hockeySelect.setImageResource(R.color.white);
+
+            subtitle.setText("UPCOMING FOOTBALL GAMES");
+
+            currentSelected = footballButton;
         } else if (view == basketballButton) {
             footballTextView.setTypeface(null, Typeface.NORMAL);
             basketballTextView.setTypeface(null, Typeface.BOLD);
@@ -81,6 +113,14 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
             footballButton.setBackground(greyOutline);
             basketballButton.setBackground(blueOutline);
             hockeyButton.setBackground(greyOutline);
+
+            footballSelect.setImageResource(R.color.white);
+            basketballSelect.setImageResource(R.color.michiganBlue);
+            hockeySelect.setImageResource(R.color.white);
+
+            subtitle.setText("UPCOMING BASKETBALL GAMES");
+
+            currentSelected = basketballButton;
         } else if (view == hockeyButton) {
             footballTextView.setTypeface(null, Typeface.NORMAL);
             basketballTextView.setTypeface(null, Typeface.NORMAL);
@@ -89,6 +129,14 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
             footballButton.setBackground(greyOutline);
             basketballButton.setBackground(greyOutline);
             hockeyButton.setBackground(blueOutline);
+
+            footballSelect.setImageResource(R.color.white);
+            basketballSelect.setImageResource(R.color.white);
+            hockeySelect.setImageResource(R.color.michiganBlue);
+
+            subtitle.setText("UPCOMING HOCKEY GAMES");
+
+            currentSelected = hockeyButton;
         }
     }
 

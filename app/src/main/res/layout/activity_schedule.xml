@@ -4,28 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".Schedule">
+
+    <TextView
+        android:id="@+id/textView_schedule_subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@color/michiganBlue"
+        android:gravity="center"
+        android:text="UPCOMING GAMES"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView_basketball_selectbar" />
 
     <Button
         android:id="@+id/button_sched_hockey"
         android:layout_width="0dp"
         android:layout_height="100dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
+        android:layout_marginLeft="2.66667dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginRight="4dp"
+        android:layout_marginRight="8dp"
         android:background="@drawable/button_grey_border"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline_sched_rightThird"
         app:layout_constraintTop_toBottomOf="@+id/textView_schedule_title" />
 
     <TextView
         android:id="@+id/textView_schedule_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="#00274C"
+        android:layout_marginTop="8dp"
+        android:background="@color/michiganBlue"
         android:gravity="center"
         android:text="@string/schedule"
         android:textColor="#FFFFFF"
@@ -38,25 +52,23 @@
         android:id="@+id/button_sched_football"
         android:layout_width="0dp"
         android:layout_height="100dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginRight="4dp"
+        android:layout_marginRight="2.66667dp"
         android:background="@drawable/button_grey_border"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_sched_leftThird"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_schedule_title" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
+        android:id="@+id/guideline_sched_leftThird"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.33333333333" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
+        android:id="@+id/guideline_sched_rightThird"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -66,47 +78,45 @@
         android:id="@+id/button_sched_basketball"
         android:layout_width="0dp"
         android:layout_height="100dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
+        android:layout_marginLeft="5.33333dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginRight="4dp"
+        android:layout_marginRight="5.33333dp"
         android:background="@drawable/button_grey_border"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_sched_rightThird"
+        app:layout_constraintStart_toStartOf="@+id/guideline_sched_leftThird"
         app:layout_constraintTop_toBottomOf="@+id/textView_schedule_title" />
 
     <TextView
         android:id="@+id/textView_sched_football"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="75dp"
         android:gravity="center"
         android:text="@string/football"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/button_sched_football"
+        app:layout_constraintStart_toStartOf="@+id/button_sched_football"
         app:layout_constraintTop_toTopOf="@+id/button_sched_football" />
 
     <TextView
         android:id="@+id/textView_sched_basketball"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="75dp"
         android:gravity="center"
         android:text="@string/mens_basketball"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toEndOf="@+id/button_sched_basketball"
+        app:layout_constraintStart_toStartOf="@+id/button_sched_basketball"
         app:layout_constraintTop_toTopOf="@+id/button_sched_basketball" />
 
     <TextView
         android:id="@+id/textView_sched_hockey"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="75dp"
         android:gravity="center"
         android:text="@string/hockey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintEnd_toEndOf="@+id/button_sched_hockey"
+        app:layout_constraintStart_toStartOf="@+id/button_sched_hockey"
         app:layout_constraintTop_toTopOf="@+id/button_sched_hockey" />
 
     <ImageView
@@ -115,8 +125,8 @@
         android:layout_height="72dp"
         android:layout_marginTop="4dp"
         android:tint="#FA8320"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toEndOf="@+id/button_sched_basketball"
+        app:layout_constraintStart_toStartOf="@+id/button_sched_basketball"
         app:layout_constraintTop_toTopOf="@+id/button_sched_basketball"
         app:srcCompat="@drawable/ic_sports_basketball_24px" />
 
@@ -125,8 +135,8 @@
         android:layout_width="96dp"
         android:layout_height="79dp"
         android:tint="#8B4513"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/button_sched_football"
+        app:layout_constraintStart_toStartOf="@+id/button_sched_football"
         app:layout_constraintTop_toTopOf="@+id/button_sched_football"
         app:srcCompat="@drawable/ic_sports_football_24px" />
 
@@ -135,9 +145,19 @@
         android:layout_width="100dp"
         android:layout_height="81dp"
         app:layout_constraintEnd_toEndOf="@+id/button_sched_hockey"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/button_sched_hockey"
         app:layout_constraintTop_toTopOf="@+id/button_sched_hockey"
         app:srcCompat="@drawable/ic_sports_hockey_24px" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_schedule"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintBottom_toTopOf="@id/id_Navbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView_schedule_subtitle" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/id_Navbar"
@@ -146,6 +166,42 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/nav_botton_menu"
-        android:layout_width="match_parent" />
+        android:layout_width="match_parent" >
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    <ImageView
+        android:id="@+id/imageView_football_selectbar"
+        android:layout_width="0dp"
+        android:layout_height="8dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="@+id/button_sched_football"
+        app:layout_constraintStart_toStartOf="@+id/button_sched_football"
+        app:layout_constraintTop_toBottomOf="@+id/button_sched_football"
+        app:srcCompat="@color/white" />
+
+    <ImageView
+        android:id="@+id/imageView_basketball_selectbar"
+        android:layout_width="0dp"
+        android:layout_height="8dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="0dp"
+        app:layout_constraintEnd_toEndOf="@+id/button_sched_basketball"
+        app:layout_constraintStart_toStartOf="@+id/button_sched_basketball"
+        app:layout_constraintTop_toBottomOf="@+id/button_sched_basketball"
+        app:srcCompat="@color/white" />
+
+    <ImageView
+        android:id="@+id/imageView_hockey_selectbar"
+        android:layout_width="0dp"
+        android:layout_height="8dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="0dp"
+        app:layout_constraintEnd_toEndOf="@+id/button_sched_hockey"
+        app:layout_constraintStart_toStartOf="@+id/button_sched_hockey"
+        app:layout_constraintTop_toBottomOf="@+id/button_sched_hockey"
+        app:srcCompat="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,7 +24,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class SellTicketDetails extends AppCompatActivity implements
         TextView.OnEditorActionListener,
         RadioButton.OnCheckedChangeListener,
-        View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
+        View.OnClickListener,
+        BottomNavigationView.OnNavigationItemSelectedListener {
 
     Button buttonSellDone;
     EditText editTextSellRow, editTextSellQuantity, editTextSellSection;

@@ -3,4 +3,8 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="michiganBlue">#00274C</color>
+    <color name="michiganMaize">#ffcb05</color>
+    <color name="goodGrey">#9EA6AC</color>
+    <color name="white">#FFFFFF</color>
 </resources>
