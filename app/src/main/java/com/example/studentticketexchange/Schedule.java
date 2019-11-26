@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -21,6 +23,8 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+
 public class Schedule extends AppCompatActivity implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
     Button footballButton, basketballButton, hockeyButton, currentSelected;
     TextView subtitle, footballTextView, basketballTextView, hockeyTextView;
@@ -29,6 +33,8 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
 
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
+
+    private ArrayList<Game> games;
 
 
     @Override
@@ -59,6 +65,8 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
         mMainFrame = (FrameLayout) findViewById(R.id.id_frame);
 
         mMainNav.setOnNavigationItemSelectedListener(this);
+
+        initGames();
     }
 
     @Override
@@ -224,5 +232,24 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
 
         return super.onOptionsItemSelected(item);
 
+    }
+
+    private void initGames() {
+        games = new ArrayList<>();
+        games.add(new Game(1, "Middle Tennesee", 8, 31, 2019));
+        games.add(new Game(1, "Army", 9, 9, 2019));
+        games.add(new Game(1, "Rutgers", 9, 9, 2019));
+        games.add(new Game(1, "Iowa", 9, 9, 2019));
+        games.add(new Game(1, "Notre Dame", 9, 9, 2019));
+        games.add(new Game(1, "Michigan State", 9, 9, 2019));
+        games.add(new Game(1, "Ohio State", 9, 9, 2019));
+        initScheduleRecyclerView();
+    }
+
+    private void initScheduleRecyclerView() {
+        RecyclerView recyclerView_schedule = findViewById(R.id.recyclerView_schedule);
+        ScheduleRecyclerViewAdapter scheduleRecyclerViewAdapter = new ScheduleRecyclerViewAdapter(games, this);
+        recyclerView_schedule.setAdapter(scheduleRecyclerViewAdapter);
+        recyclerView_schedule.setLayoutManager(new LinearLayoutManager(this));
     }
 }

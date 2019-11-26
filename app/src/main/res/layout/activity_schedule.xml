@@ -153,11 +153,10 @@
         android:id="@+id/recyclerView_schedule"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintBottom_toTopOf="@id/id_Navbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_schedule_subtitle" />
+        app:layout_constraintTop_toBottomOf="@id/textView_schedule_subtitle"
+        app:layout_constraintBottom_toTopOf="@id/id_Navbar"/>
+
+
 
     <ImageView
         android:id="@+id/imageView_football_selectbar"

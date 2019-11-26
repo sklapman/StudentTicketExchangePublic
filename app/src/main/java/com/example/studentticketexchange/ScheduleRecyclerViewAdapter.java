@@ -17,6 +17,11 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
     private ArrayList<Game> games = new ArrayList<>();
     private Context mContext;
 
+    ScheduleRecyclerViewAdapter(ArrayList<Game> games, Context mContext) {
+        this.games = games;
+        this.mContext = mContext;
+    }
+
     @NonNull
     @Override
     public ScheduleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -29,12 +34,12 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
     public void onBindViewHolder(@NonNull ScheduleViewHolder holder, int position) {
         Game game = games.get(position);
         String[] months = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-        holder.dateText.setText(months[game.month - 1] + " " + game.day);
-        holder.opponentText.setText(game.opponent);
-        holder.availableText.setText("");
-        holder.minPriceText.setText("");
-        holder.avgPriceText.setText("");
-        holder.maxPriceText.setText("");
+//        holder.dateText.setText(months[game.month - 1] + " " + game.day);
+        holder.opponentText.setText(games.get(position).opponent);
+//        holder.availableText.setText("");
+//        holder.minPriceText.setText("");
+//        holder.avgPriceText.setText("");
+//        holder.maxPriceText.setText("");
         holder.gameItemParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
