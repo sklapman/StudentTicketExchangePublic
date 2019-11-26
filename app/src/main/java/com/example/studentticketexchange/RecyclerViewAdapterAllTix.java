@@ -60,7 +60,7 @@ public class RecyclerViewAdapterAllTix extends RecyclerView.Adapter<RecyclerView
         public AllTixViewHolder(@NonNull View itemView) {
             super(itemView);
             checkBoxStudentTix = itemView.findViewById(R.id.checkBoxStudentTix);
-            textViewSection = itemView.findViewById(R.id.textViewBuySection);
+            textViewSection = itemView.findViewById(R.id.textViewSection);
             textViewRow = itemView.findViewById(R.id.textViewRow);
             textViewQty = itemView.findViewById(R.id.textViewQty);
             textViewPrice = itemView.findViewById(R.id.textViewPrice);

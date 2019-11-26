@@ -29,7 +29,7 @@ public class AllTicketsForGame extends AppCompatActivity implements View.OnClick
 //    private SellFragment sellFragment;
 //    private InboxFragment inboxFragment;
 
-//    private ArrayList<Listing> listings;
+    private ArrayList<Listing> listings;
 
 
     @Override
@@ -46,7 +46,7 @@ public class AllTicketsForGame extends AppCompatActivity implements View.OnClick
 
 //        mMainNav.setOnNavigationItemSelectedListener(this);
 
-//        initListings();
+        initListings();
     }
 
     @Override
@@ -144,16 +144,16 @@ public class AllTicketsForGame extends AppCompatActivity implements View.OnClick
 //        }
 //    }
 
-//    private void initListings() {
-//        listings = new ArrayList<>();
-//        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "330","Selling together"));
-//        initRecyclerView();
-//    }
-//
-//    private void initRecyclerView() {
-//        RecyclerView recyclerViewTix = findViewById(R.id.recyclerViewTix);
-//        RecyclerViewAdapterAllTix recyclerViewAdapterAllTix = new RecyclerViewAdapterAllTix(listings, this);
-//        recyclerViewTix.setAdapter(recyclerViewAdapterAllTix);
-//        recyclerViewTix.setLayoutManager(new LinearLayoutManager(this));
-//    }
+    private void initListings() {
+        listings = new ArrayList<>();
+        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "330","Selling together"));
+        initRecyclerView();
+    }
+
+    private void initRecyclerView() {
+        RecyclerView recyclerViewTix = findViewById(R.id.recyclerViewTix);
+        RecyclerViewAdapterAllTix recyclerViewAdapterAllTix = new RecyclerViewAdapterAllTix(listings, this);
+        recyclerViewTix.setAdapter(recyclerViewAdapterAllTix);
+        recyclerViewTix.setLayoutManager(new LinearLayoutManager(this));
+    }
 }
