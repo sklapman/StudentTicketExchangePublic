@@ -152,6 +152,25 @@ public class AllTicketsForGame extends AppCompatActivity implements View.OnClick
     private void initListings() {
         listings = new ArrayList<>();
         listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "330","Selling together"));
+        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "331","Selling together"));
+        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "332","Selling together"));
+        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "333","Selling together"));
+        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "334","Selling together"));
+        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "335","Selling together"));
+        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "336","Selling together"));
+        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "337","Selling together"));
+        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "338","Selling together"));
+        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "339","Selling together"));
+        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "330","Selling together"));
+        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "331","Selling together"));
+        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "332","Selling together"));
+        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "333","Selling together"));
+        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "334","Selling together"));
+        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "335","Selling together"));
+        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "336","Selling together"));
+        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "337","Selling together"));
+        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "338","Selling together"));
+        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "339","Selling together"));
         initRecyclerView();
     }
 
