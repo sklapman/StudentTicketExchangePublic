@@ -18,12 +18,6 @@ public class Inbox extends AppCompatActivity implements BottomNavigationView.OnN
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
 
-    private ProfileFragment profileFragment;
-    private ScheduleFragment scheduleFragment;
-    private SellFragment sellFragment;
-    private InboxFragment inboxFragment;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,11 +25,6 @@ public class Inbox extends AppCompatActivity implements BottomNavigationView.OnN
 
         mMainNav = (BottomNavigationView) findViewById(R.id.id_Navbar);
         mMainFrame = (FrameLayout) findViewById(R.id.id_frame);
-
-        profileFragment = new ProfileFragment();
-        scheduleFragment = new ScheduleFragment();
-        sellFragment = new SellFragment();
-        inboxFragment = new InboxFragment();
 
         mMainNav.setOnNavigationItemSelectedListener(this);
     }
@@ -92,7 +81,7 @@ public class Inbox extends AppCompatActivity implements BottomNavigationView.OnN
         }
 
         if (item.getItemId() == R.id.itemSell) {
-            Intent searchIntent = new Intent(this, SellFragment.class);
+            Intent searchIntent = new Intent(this, SellTicketDetails.class);
             startActivity(searchIntent);
         }
 

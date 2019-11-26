@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         if (item.getItemId() == R.id.itemSell) {
-            Intent searchIntent = new Intent(this, SellFragment.class);
+            Intent searchIntent = new Intent(this, SellTicketDetails.class);
             startActivity(searchIntent);
         }
 

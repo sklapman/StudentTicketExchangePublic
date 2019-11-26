@@ -22,11 +22,6 @@ public class ChoiceBuySell extends AppCompatActivity implements View.OnClickList
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
 
-    private ProfileFragment profileFragment;
-    private ScheduleFragment scheduleFragment;
-    private SellFragment sellFragment;
-    private InboxFragment inboxFragment;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +36,6 @@ public class ChoiceBuySell extends AppCompatActivity implements View.OnClickList
 
         mMainNav = (BottomNavigationView) findViewById(R.id.id_Navbar);
         mMainFrame = (FrameLayout) findViewById(R.id.id_frame);
-
-        profileFragment = new ProfileFragment();
-        scheduleFragment = new ScheduleFragment();
-        sellFragment = new SellFragment();
-        inboxFragment = new InboxFragment();
 
         mMainNav.setOnNavigationItemSelectedListener(this);
     }
@@ -111,7 +101,7 @@ public class ChoiceBuySell extends AppCompatActivity implements View.OnClickList
         }
 
         if (item.getItemId() == R.id.itemSell) {
-            Intent searchIntent = new Intent(this, SellFragment.class);
+            Intent searchIntent = new Intent(this, SellTicketDetails.class);
             startActivity(searchIntent);
         }
 

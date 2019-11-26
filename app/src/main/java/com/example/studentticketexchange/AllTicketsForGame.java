@@ -106,7 +106,7 @@ public class AllTicketsForGame extends AppCompatActivity implements View.OnClick
         }
 
         if (item.getItemId() == R.id.itemSell) {
-            Intent searchIntent = new Intent(this, SellFragment.class);
+            Intent searchIntent = new Intent(this, SellTicketDetails.class);
             startActivity(searchIntent);
         }
 

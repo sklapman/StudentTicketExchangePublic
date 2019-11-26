@@ -35,11 +35,6 @@ public class SellTicketDetails extends AppCompatActivity implements
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
 
-    private ProfileFragment profileFragment;
-    private ScheduleFragment scheduleFragment;
-    private SellFragment sellFragment;
-    private InboxFragment inboxFragment;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,11 +64,6 @@ public class SellTicketDetails extends AppCompatActivity implements
 
         mMainNav = (BottomNavigationView) findViewById(R.id.id_Navbar);
         mMainFrame = (FrameLayout) findViewById(R.id.id_frame);
-
-        profileFragment = new ProfileFragment();
-        scheduleFragment = new ScheduleFragment();
-        sellFragment = new SellFragment();
-        inboxFragment = new InboxFragment();
 
         mMainNav.setOnNavigationItemSelectedListener(this);
 
@@ -146,7 +136,7 @@ public class SellTicketDetails extends AppCompatActivity implements
         }
 
         if (item.getItemId() == R.id.itemSell) {
-            Intent searchIntent = new Intent(this, SellFragment.class);
+            Intent searchIntent = new Intent(this, SellTicketDetails.class);
             startActivity(searchIntent);
         }
 
