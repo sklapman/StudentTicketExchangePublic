@@ -159,17 +159,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView_schedule_subtitle" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/id_Navbar"
-        android:layout_height="56dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/nav_botton_menu"
-        android:layout_width="match_parent" >
-
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
-
     <ImageView
         android:id="@+id/imageView_football_selectbar"
         android:layout_width="0dp"
@@ -203,5 +192,16 @@
         app:layout_constraintStart_toStartOf="@+id/button_sched_hockey"
         app:layout_constraintTop_toBottomOf="@+id/button_sched_hockey"
         app:srcCompat="@color/white" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/id_Navbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/nav_botton_menu">
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
