@@ -4,128 +4,172 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AllTicketsForGame">
+    tools:context=".SellTicketDetails">
 
-    <TextView
-        android:id="@+id/textViewGameName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="50dp"
-        android:text="Game Name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/buttonSell"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="Sell"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textViewGameDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="8dp"
-        android:text="Game Date"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewGameName" />
-
-    <TextView
-        android:id="@+id/textViewAvailableTix"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:background="#00274c"
-        android:text="@string/AvailableTix"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSell" />
+        android:layout_height="match_parent">
 
-    <TableLayout
-        android:id="@+id/tableAvailableTixHeader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewAvailableTix">
-
-        <TableRow
-            android:id="@+id/tableRowHeader"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#426bba">
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
             <TextView
+                android:id="@+id/textViewSellSport"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Student"
-                android:textColor="#FFF"
-                android:textStyle="bold" />
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Sport"
+                android:textSize="24sp" />
+
+            <RadioGroup
+                android:id="@+id/radioSellGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="120dp"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="20dp">
+
+                <RadioButton
+                    android:id="@+id/radioSellButtonFootball"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Football"
+                    android:textSize="24sp" />
+
+                <RadioButton
+                    android:id="@+id/radioSellButtonBasketball"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Basketball"
+                    android:textSize="24sp" />
+
+                <RadioButton
+                    android:id="@+id/radioSellButtonHockey"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Hockey"
+                    android:textSize="24sp" />
+            </RadioGroup>
 
             <TextView
+                android:id="@+id/textViewSellSection"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
                 android:text="Section"
-                android:textColor="#FFF"
-                android:textStyle="bold" />
+                android:textSize="24sp" />
 
             <TextView
+                android:id="@+id/textViewSellRow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
                 android:text="Row"
-                android:textColor="#FFF"
-                android:textStyle="bold" />
+                android:textSize="24sp" />
+
+            <Spinner
+                android:id="@+id/spinnerSellGames"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="120dp"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp" />
 
             <TextView
+                android:id="@+id/textViewSellGame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:text="Game"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/editTextSellRow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editTextSellSection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editTextSellQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textViewSellQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Quantity"
-                android:textColor="#FFF"
-                android:textStyle="bold" />
+                android:textSize="24sp" />
 
             <TextView
+                android:id="@+id/textViewSellPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
                 android:text="Price"
-                android:textColor="#FFF"
-                android:textStyle="bold" />
+                android:textSize="24sp" />
 
-        </TableRow>
+            <EditText
+                android:id="@+id/editTextSellPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="$"
+                android:inputType="textPersonName" />
 
-    </TableLayout>
+            <Switch
+                android:id="@+id/switchSellStudentTicket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Student Ticket"
+                android:textSize="24sp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewTix"
-        android:layout_width="match_parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableAvailableTixHeader"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/id_Navbar"
+            <Switch
+                android:id="@+id/switchSellValidated"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Validated"
+                android:textSize="24sp" />
 
-        >
+            <Switch
+                android:id="@+id/switchSellNegotiable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Negotiable"
+                android:textSize="24sp" />
 
-    </androidx.recyclerview.widget.RecyclerView>
+            <Button
+                android:id="@+id/buttonSellDone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Done"
+                android:textColor="#3F51B5"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+    </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/id_Navbar"
@@ -135,6 +179,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/nav_botton_menu"
         android:layout_width="match_parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
