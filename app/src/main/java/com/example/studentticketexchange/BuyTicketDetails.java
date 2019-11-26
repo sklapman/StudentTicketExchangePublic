@@ -135,6 +135,13 @@ public class BuyTicketDetails extends AppCompatActivity implements
         if (item.getItemId() == R.id.itemSell) {
             Intent searchIntent = new Intent(this, SellTicketDetails.class);
             startActivity(searchIntent);
+
+
+        }
+
+        if (item.getItemId() == R.id.itemTemp) {
+            Intent searchIntent = new Intent(this, RecyclerViewTest.class);
+            startActivity(searchIntent);
         }
 
 

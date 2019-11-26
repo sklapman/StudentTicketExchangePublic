@@ -86,6 +86,11 @@ public class Chat extends AppCompatActivity implements BottomNavigationView.OnNa
             startActivity(searchIntent);
         }
 
+        if (item.getItemId() == R.id.itemTemp) {
+            Intent searchIntent = new Intent(this, RecyclerViewTest.class);
+            startActivity(searchIntent);
+        }
+
 
         return super.onOptionsItemSelected(item);
 

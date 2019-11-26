@@ -106,6 +106,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(searchIntent);
         }
 
+        if (item.getItemId() == R.id.itemTemp) {
+            Intent searchIntent = new Intent(this, RecyclerViewTest.class);
+            startActivity(searchIntent);
+        }
+
 
         return super.onOptionsItemSelected(item);
 

@@ -119,6 +119,11 @@ public class Profile extends AppCompatActivity implements BottomNavigationView.O
             startActivity(searchIntent);
         }
 
+        if (item.getItemId() == R.id.itemTemp) {
+            Intent searchIntent = new Intent(this, RecyclerViewTest.class);
+            startActivity(searchIntent);
+        }
+
         return super.onOptionsItemSelected(item);
 
     }

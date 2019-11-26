@@ -26,4 +26,7 @@
     <item
         android:id="@+id/itemSchedule"
         android:title="Schedule" />
+    <item
+        android:id="@+id/itemTemp"
+        android:title="TempRecycle" />
 </menu>
