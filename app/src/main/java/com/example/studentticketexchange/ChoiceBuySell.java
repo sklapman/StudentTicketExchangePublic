@@ -46,6 +46,7 @@ public class ChoiceBuySell extends AppCompatActivity implements View.OnClickList
             startActivity(new Intent(ChoiceBuySell.this, Schedule.class));
         } else if(view == sellButton){
 
+
         }
     }
 

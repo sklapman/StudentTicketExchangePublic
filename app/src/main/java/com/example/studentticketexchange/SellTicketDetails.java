@@ -10,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -18,6 +20,7 @@ import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Spinner;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -25,12 +28,13 @@ public class SellTicketDetails extends AppCompatActivity implements
         TextView.OnEditorActionListener,
         RadioButton.OnCheckedChangeListener,
         View.OnClickListener,
-        BottomNavigationView.OnNavigationItemSelectedListener {
+        BottomNavigationView.OnNavigationItemSelectedListener,
+        AdapterView.OnItemSelectedListener {
 
-    Button buttonSellDone;
-    EditText editTextSellRow, editTextSellQuantity, editTextSellSection;
-    Switch switchSellStudentTicket, switchSellValidated, switchSellNegotiable;
-    RadioButton radioButtonSellFootball, radioButtonSellHockey, radioButtonSellBasketball;
+    RadioButton radioSellButtonFootball, radioSellButtonBasketball, radioSellButtonHockey;
+    EditText editTextSellRow, editTextSellSection, editTextSellPrice;
+    Spinner spinnerSellQuantity, spinnerSellGame, spinnerSellStudentTicket, spinnerSellValidated, spinnerSellNegotiable;
+    Button buttonSellDone, buttonSellBack;
 
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
@@ -42,30 +46,40 @@ public class SellTicketDetails extends AppCompatActivity implements
         setContentView(R.layout.activity_sell_ticket_details);
 
         //Implement listeners
-        editTextSellQuantity = findViewById(R.id.editTextSellQuantity);
+        radioSellButtonFootball = findViewById(R.id.radioSellButtonFootball);
+        radioSellButtonBasketball = findViewById(R.id.radioSellButtonBasketball);
+        radioSellButtonHockey = findViewById(R.id.radioSellButtonHockey);
         editTextSellRow = findViewById(R.id.editTextSellRow);
         editTextSellSection = findViewById(R.id.editTextSellSection);
-        switchSellStudentTicket = findViewById(R.id.switchSellStudentTicket);
-        switchSellValidated = findViewById(R.id.switchSellValidated);
-        switchSellNegotiable = findViewById(R.id.switchSellNegotiable);
-        radioButtonSellFootball = findViewById(R.id.radioSellButtonFootball);
-        radioButtonSellBasketball = findViewById(R.id.radioSellButtonBasketball);
-        radioButtonSellHockey = findViewById(R.id.radioSellButtonHockey);
+        editTextSellPrice = findViewById(R.id.editTextSellPrice);
         buttonSellDone = findViewById(R.id.buttonSellDone);
+        buttonSellBack = findViewById(R.id.buttonSellBack);
+        spinnerSellQuantity = findViewById(R.id.spinnerSellQuantity);
+        spinnerSellGame = findViewById(R.id.spinnerSellGame);
+        spinnerSellStudentTicket = findViewById(R.id.spinnerSellStudentTicket);
+        spinnerSellValidated = findViewById(R.id.spinnerSellValidated);
+        spinnerSellNegotiable = findViewById(R.id.spinnerSellNegotiable);
 
         //Activate listeners
         buttonSellDone.setOnClickListener(this);
-        editTextSellQuantity.setOnEditorActionListener(this);
+        buttonSellBack.setOnClickListener(this);
         editTextSellRow.setOnEditorActionListener(this);
         editTextSellSection.setOnEditorActionListener(this);
-        radioButtonSellHockey.setOnCheckedChangeListener(this);
-        radioButtonSellBasketball.setOnCheckedChangeListener(this);
-        radioButtonSellFootball.setOnCheckedChangeListener(this);
+        editTextSellPrice.setOnEditorActionListener(this);
+        radioSellButtonFootball.setOnCheckedChangeListener(this);
+        radioSellButtonBasketball.setOnCheckedChangeListener(this);
+        radioSellButtonHockey.setOnCheckedChangeListener(this);
+        spinnerSellQuantity.setOnItemSelectedListener(this);
+        spinnerSellGame.setOnItemSelectedListener(this);
+        spinnerSellStudentTicket.setOnItemSelectedListener(this);
+        spinnerSellValidated.setOnItemSelectedListener(this);
+        spinnerSellNegotiable.setOnItemSelectedListener(this);
 
         mMainNav = (BottomNavigationView) findViewById(R.id.id_Navbar);
         mMainFrame = (FrameLayout) findViewById(R.id.id_frame);
 
         mMainNav.setOnNavigationItemSelectedListener(this);
+
 
     }
 
@@ -81,6 +95,14 @@ public class SellTicketDetails extends AppCompatActivity implements
 
     @Override
     public void onClick(View view) {
+
+        if (view == buttonSellBack) {
+            Intent portalIntent = new Intent(this, MainActivity.class);
+            startActivity(portalIntent);
+
+        } else if (view == buttonSellDone) {
+
+        }
 
     }
 
@@ -176,5 +198,15 @@ public class SellTicketDetails extends AppCompatActivity implements
                 return false;
 
         }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }
