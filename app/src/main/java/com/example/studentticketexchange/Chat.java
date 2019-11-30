@@ -3,6 +3,8 @@ package com.example.studentticketexchange;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,8 +12,10 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -26,6 +30,8 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -90,6 +96,8 @@ public class Chat extends AppCompatActivity implements BottomNavigationView.OnNa
             }
         });
 
+
+
         reference1.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -128,6 +136,17 @@ public class Chat extends AppCompatActivity implements BottomNavigationView.OnNa
         });
 
     }
+
+    @Override
+    // CLOSE KEYBOARD
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (getCurrentFocus() != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
 
     public void  addMessageBox (String message, int type) {
         TextView textView = new TextView(Chat.this);
