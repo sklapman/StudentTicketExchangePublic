@@ -34,7 +34,7 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
     public void onBindViewHolder(@NonNull ScheduleViewHolder holder, int position) {
         Game game = games.get(position);
         String[] months = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-//        holder.dateText.setText(months[game.month - 1] + " " + game.day);
+        holder.dateText.setText(months[game.month - 1] + " " + game.day);
         holder.opponentText.setText(games.get(position).opponent);
 //        holder.availableText.setText("");
 //        holder.minPriceText.setText("");
