@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SellTicketDetails">
+    tools:context=".SellFootballTicket">
 
     <Button
         android:id="@+id/buttonSellBack"
@@ -48,34 +48,12 @@
                     android:text="Sport"
                     android:textSize="18sp" />
 
-                <RadioGroup
-                    android:id="@+id/radioSellGroup"
+                <TextView
+                    android:id="@+id/textViewSellFootballFootball"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="120dp"
-                    android:layout_marginLeft="120dp">
-
-                    <RadioButton
-                        android:id="@+id/radioSellButtonFootball"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Football"
-                        android:textSize="18sp" />
-
-                    <RadioButton
-                        android:id="@+id/radioSellButtonBasketball"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Basketball"
-                        android:textSize="18sp" />
-
-                    <RadioButton
-                        android:id="@+id/radioSellButtonHockey"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Hockey"
-                        android:textSize="18sp" />
-                </RadioGroup>
+                    android:text="@string/football"
+                    android:textSize="18sp" />
 
             </TableRow>
 
@@ -110,11 +88,11 @@
                     android:text="Section"
                     android:textSize="18sp" />
 
-                <EditText
-                    android:id="@+id/editTextSellFootballSection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="number" />
+                <Spinner
+                    android:id="@+id/spinnerSellFootballSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
             </TableRow>
 
             <TableRow
@@ -129,12 +107,11 @@
                     android:text="Row"
                     android:textSize="18sp" />
 
-                <EditText
-                    android:id="@+id/editTextSellFootballRow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="number" />
+                <Spinner
+                    android:id="@+id/spinnerSellFootballRow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
             </TableRow>
 
             <TableRow
