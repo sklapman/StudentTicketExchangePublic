@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if(view == loginButton) {
             //temporarily skip the Kerberos login and go straight to buy/sell
-            startActivity(new Intent(MainActivity.this, ChoiceBuySell.class));
+            startActivity(new Intent(MainActivity.this, FirebaseLogin.class));
         }
     }
 

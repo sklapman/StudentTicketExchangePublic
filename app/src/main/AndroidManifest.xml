@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RecyclerViewTest"></activity>
+        <activity android:name=".FirebaseLogin"></activity>
+        <activity android:name=".RecyclerViewTest" />
         <activity android:name=".ChoiceBuySell" />
         <activity android:name=".Chat" />
         <activity android:name=".Inbox" />
