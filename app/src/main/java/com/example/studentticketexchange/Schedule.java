@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +40,7 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
     TextView subtitle, footballTextView, basketballTextView, hockeyTextView, noGamesTextView;
     Drawable greyOutline, blueOutline;
     ImageView footballSelect, basketballSelect, hockeySelect;
+    RelativeLayout tableKey;
 
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
@@ -62,6 +64,7 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
         hockeySelect = findViewById(R.id.imageView_hockey_selectbar);
         subtitle = findViewById(R.id.textView_schedule_subtitle);
         noGamesTextView = findViewById(R.id.textView_sched_noGames);
+        tableKey = findViewById(R.id.RelativeLayout_sched_key);
         currentSelected = null;
 
         greyOutline = getResources().getDrawable(R.drawable.button_grey_border);
@@ -259,6 +262,7 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
         if(currentSelected == null){
             noGamesTextView.setTextSize(25);
             noGamesTextView.setText("PLEASE SELECT A SPORT");
+            tableKey.setVisibility(View.INVISIBLE);
         } else if(currentSelected == footballButton){
             myRef.orderByChild("sport").equalTo(1).addValueEventListener(new ValueEventListener() {
                 @Override
@@ -273,9 +277,11 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
                         }
                     }
                     if(games.isEmpty()){
+                        tableKey.setVisibility(View.INVISIBLE);
                         noGamesTextView.setTextSize(20);
                         noGamesTextView.setText("No more games remaining on schedule");
                     } else {
+                        tableKey.setVisibility(View.VISIBLE);
                         noGamesTextView.setText("");
                         Collections.sort(games);
                         initScheduleRecyclerView();
@@ -300,9 +306,11 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
                         }
                     }
                     if(games.isEmpty()){
+                        tableKey.setVisibility(View.INVISIBLE);
                         noGamesTextView.setTextSize(20);
                         noGamesTextView.setText("No more games remaining on schedule");
                     } else {
+                        tableKey.setVisibility(View.VISIBLE);
                         noGamesTextView.setText("");
                         Collections.sort(games);
                         initScheduleRecyclerView();
@@ -327,9 +335,11 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
                         }
                     }
                     if(games.isEmpty()){
+                        tableKey.setVisibility(View.INVISIBLE);
                         noGamesTextView.setTextSize(20);
                         noGamesTextView.setText("No more games remaining on schedule");
                     } else {
+                        tableKey.setVisibility(View.VISIBLE);
                         noGamesTextView.setText("");
                         Collections.sort(games);
                         initScheduleRecyclerView();
@@ -341,7 +351,6 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
                 }
             });
         }
-        System.out.println("Got to end");
     }
 
     private void initScheduleRecyclerView() {

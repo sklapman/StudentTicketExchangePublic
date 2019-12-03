@@ -36,10 +36,15 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
         String[] months = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
         holder.dateText.setText(months[game.month - 1] + " " + game.day);
         holder.opponentText.setText(games.get(position).opponent);
-//        holder.availableText.setText("");
-//        holder.minPriceText.setText("");
-//        holder.avgPriceText.setText("");
-//        holder.maxPriceText.setText("");
+        int numTickets = 0; //Temporarily just set to zero, really we would find all tickets
+        if(numTickets == 0) {
+            holder.availableText.setText("");
+            holder.minPriceText.setText("");
+            holder.avgPriceText.setText("");
+            holder.maxPriceText.setText("");
+            holder.noTicketsText.setText("Sold Out");
+        }
+        // else set the numAvailable, minPrice, avgPrice, maxPrice
         holder.gameItemParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,7 +59,7 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
     }
 
     public class ScheduleViewHolder extends RecyclerView.ViewHolder{
-        TextView dateText, opponentText, availableText, minPriceText, avgPriceText, maxPriceText;
+        TextView dateText, opponentText, availableText, minPriceText, avgPriceText, maxPriceText, noTicketsText;
         RelativeLayout gameItemParent;
         public ScheduleViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -65,6 +70,7 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
             avgPriceText = itemView.findViewById(R.id.textView_game_price_avg);
             maxPriceText = itemView.findViewById(R.id.textView_game_price_max);
             gameItemParent = itemView.findViewById(R.id.gameItem_layout);
+            noTicketsText = itemView.findViewById(R.id.textView_game_noTicketsAvailable);
         }
     }
 }
