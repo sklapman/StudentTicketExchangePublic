@@ -17,7 +17,6 @@ import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -43,8 +42,8 @@ public class RecyclerViewTest extends AppCompatActivity implements
 
         //Implement listeners
         editTextSellQuantity = findViewById(R.id.editTextSellQuantity);
-        editTextSellRow = findViewById(R.id.editTextSellRow);
-        editTextSellSection = findViewById(R.id.editTextSellSection);
+        editTextSellRow = findViewById(R.id.editTextSellFootballRow);
+        editTextSellSection = findViewById(R.id.editTextSellFootballSection);
         switchSellStudentTicket = findViewById(R.id.switchSellStudentTicket);
         switchSellValidated = findViewById(R.id.switchSellValidated);
         switchSellNegotiable = findViewById(R.id.switchSellNegotiable);

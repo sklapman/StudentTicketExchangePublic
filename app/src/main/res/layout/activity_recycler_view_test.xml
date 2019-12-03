@@ -16,7 +16,7 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/textViewSellSport"
+                android:id="@+id/textViewSellFootballSport"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -56,14 +56,14 @@
             </RadioGroup>
 
             <TextView
-                android:id="@+id/textViewSellSection"
+                android:id="@+id/textViewSellFootballSection"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Section"
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/textViewSellRow"
+                android:id="@+id/textViewSellFootballRow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Row"
@@ -80,7 +80,7 @@
                 android:layout_marginRight="10dp" />
 
             <TextView
-                android:id="@+id/textViewSellGame"
+                android:id="@+id/textViewSellFootballGame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -89,7 +89,7 @@
                 android:textSize="24sp" />
 
             <EditText
-                android:id="@+id/editTextSellRow"
+                android:id="@+id/editTextSellFootballRow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -97,7 +97,7 @@
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/editTextSellSection"
+                android:id="@+id/editTextSellFootballSection"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -113,21 +113,21 @@
                 android:inputType="textPersonName" />
 
             <TextView
-                android:id="@+id/textViewSellQuantity"
+                android:id="@+id/textViewSellFootballQuantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Quantity"
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/textViewSellPrice"
+                android:id="@+id/textViewSellFootballPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Price"
                 android:textSize="24sp" />
 
             <EditText
-                android:id="@+id/editTextSellPrice"
+                android:id="@+id/editTextSellFootballPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"

@@ -10,13 +10,23 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
-public class Profile extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class Profile extends AppCompatActivity implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
+
+    Button buttonLogout;
+    TextView textViewUserName;
+
+    private FirebaseAuth mAuth;
 
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
@@ -26,6 +36,13 @@ public class Profile extends AppCompatActivity implements BottomNavigationView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        buttonLogout = findViewById(R.id.buttonLogout);
+        textViewUserName = findViewById(R.id.textViewUserName);
+
+        buttonLogout.setOnClickListener(this);
+        mAuth = FirebaseAuth.getInstance();
+
         mMainNav = (BottomNavigationView) findViewById(R.id.id_Navbar);
         mMainFrame = (FrameLayout) findViewById(R.id.id_frame);
 
@@ -128,5 +145,21 @@ public class Profile extends AppCompatActivity implements BottomNavigationView.O
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        Toast.makeText(this, "User: "+currentUser, Toast.LENGTH_LONG).show();
+    }
 
+    @Override
+    public void onClick(View v) {
+        if (v == buttonLogout) {
+            Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
+            mAuth.signOut();
+            Intent mainIntent = new Intent(this, MainActivity.class);
+            startActivity(mainIntent);
+        }
+    }
 }

@@ -10,17 +10,18 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
-import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.Spinner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -49,16 +50,16 @@ public class SellTicketDetails extends AppCompatActivity implements
         radioSellButtonFootball = findViewById(R.id.radioSellButtonFootball);
         radioSellButtonBasketball = findViewById(R.id.radioSellButtonBasketball);
         radioSellButtonHockey = findViewById(R.id.radioSellButtonHockey);
-        editTextSellRow = findViewById(R.id.editTextSellRow);
-        editTextSellSection = findViewById(R.id.editTextSellSection);
-        editTextSellPrice = findViewById(R.id.editTextSellPrice);
+        editTextSellRow = findViewById(R.id.editTextSellFootballRow);
+        editTextSellSection = findViewById(R.id.editTextSellFootballSection);
+        editTextSellPrice = findViewById(R.id.editTextSellFootballPrice);
         buttonSellDone = findViewById(R.id.buttonSellDone);
         buttonSellBack = findViewById(R.id.buttonSellBack);
-        spinnerSellQuantity = findViewById(R.id.spinnerSellQuantity);
-        spinnerSellGame = findViewById(R.id.spinnerSellGame);
-        spinnerSellStudentTicket = findViewById(R.id.spinnerSellStudentTicket);
-        spinnerSellValidated = findViewById(R.id.spinnerSellValidated);
-        spinnerSellNegotiable = findViewById(R.id.spinnerSellNegotiable);
+        spinnerSellQuantity = findViewById(R.id.spinnerSellFootballQuantity);
+        spinnerSellGame = findViewById(R.id.spinnerSellFootballGame);
+        spinnerSellStudentTicket = findViewById(R.id.spinnerSellFootballStudentTicket);
+        spinnerSellValidated = findViewById(R.id.spinnerSellFootballValidated);
+        spinnerSellNegotiable = findViewById(R.id.spinnerSellFootballNegotiable);
 
         //Activate listeners
         buttonSellDone.setOnClickListener(this);
@@ -79,6 +80,50 @@ public class SellTicketDetails extends AppCompatActivity implements
         mMainFrame = (FrameLayout) findViewById(R.id.id_frame);
 
         mMainNav.setOnNavigationItemSelectedListener(this);
+
+        //Quantity List
+        List<String> quantity = new ArrayList<String>();
+        quantity.add("1");
+        quantity.add("2");
+        quantity.add("3");
+        quantity.add("4");
+        quantity.add("5");
+        quantity.add("6");
+
+        ArrayAdapter<String> dataQuantity = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, quantity);
+
+        dataQuantity.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerSellQuantity.setAdapter(dataQuantity);
+
+        //Student Ticket List
+        List<String> student = new ArrayList<String>();
+        student.add("Yes");
+        student.add("No");
+
+        ArrayAdapter<String> dataStudent = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, student);
+
+        dataStudent.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerSellStudentTicket.setAdapter(dataStudent);
+
+        //Validated List
+        List<String> validated = new ArrayList<String>();
+        validated.add("Yes");
+        validated.add("No");
+
+        ArrayAdapter<String> dataValidated = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, validated);
+
+        dataValidated.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerSellValidated.setAdapter(dataValidated);
+
+        //Negotiable List
+        List<String> negotiable = new ArrayList<String>();
+        negotiable.add("Yes");
+        negotiable.add("No");
+
+        ArrayAdapter<String> dataNegotiable = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, validated);
+
+        dataNegotiable.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerSellNegotiable.setAdapter(dataNegotiable);
 
 
     }
@@ -202,6 +247,8 @@ public class SellTicketDetails extends AppCompatActivity implements
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        String strSelection = adapterView.getItemAtPosition(i).toString();
+
 
     }
 
