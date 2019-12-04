@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".SellBasketballTicket">
 
+
     <Button
         android:id="@+id/buttonSellBack"
         android:layout_width="wrap_content"
@@ -42,40 +43,18 @@
                 android:paddingBottom="10dp">
 
                 <TextView
-                    android:id="@+id/textViewSellFootballSport"
+                    android:id="@+id/textViewSellBasketballSport"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sport"
                     android:textSize="18sp" />
 
-                <RadioGroup
-                    android:id="@+id/radioSellGroup"
+                <TextView
+                    android:id="@+id/textViewSellBasketballBasketball"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="120dp"
-                    android:layout_marginLeft="120dp">
-
-                    <RadioButton
-                        android:id="@+id/radioSellButtonFootball"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Football"
-                        android:textSize="18sp" />
-
-                    <RadioButton
-                        android:id="@+id/radioSellButtonBasketball"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Basketball"
-                        android:textSize="18sp" />
-
-                    <RadioButton
-                        android:id="@+id/radioSellButtonHockey"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Hockey"
-                        android:textSize="18sp" />
-                </RadioGroup>
+                    android:text="Basketball"
+                    android:textSize="18sp" />
 
             </TableRow>
 
@@ -85,14 +64,14 @@
                 android:paddingBottom="10dp">
 
                 <TextView
-                    android:id="@+id/textViewSellFootballGame"
+                    android:id="@+id/textViewSellBasketballGame"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Game"
                     android:textSize="18sp" />
 
                 <Spinner
-                    android:id="@+id/spinnerSellFootballGame"
+                    android:id="@+id/spinnerSellBasketballGame"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -104,17 +83,17 @@
                 android:paddingBottom="10dp">
 
                 <TextView
-                    android:id="@+id/textViewSellFootballSection"
+                    android:id="@+id/textViewSellBasketballSection"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Section"
                     android:textSize="18sp" />
 
-                <EditText
-                    android:id="@+id/editTextSellFootballSection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="number" />
+                <Spinner
+                    android:id="@+id/spinnerSellBasketballSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
             </TableRow>
 
             <TableRow
@@ -123,18 +102,17 @@
                 android:paddingBottom="10dp">
 
                 <TextView
-                    android:id="@+id/textViewSellFootballRow"
+                    android:id="@+id/textViewSellBasketballRow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Row"
                     android:textSize="18sp" />
 
-                <EditText
-                    android:id="@+id/editTextSellFootballRow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="number" />
+                <Spinner
+                    android:id="@+id/spinnerSellBasketballRow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
             </TableRow>
 
             <TableRow
@@ -143,14 +121,14 @@
                 android:paddingBottom="10dp">
 
                 <TextView
-                    android:id="@+id/textViewSellFootballQuantity"
+                    android:id="@+id/textViewSellBasketballQuantity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Quantity"
                     android:textSize="18sp" />
 
                 <Spinner
-                    android:id="@+id/spinnerSellFootballQuantity"
+                    android:id="@+id/spinnerSellBasketballQuantity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -162,14 +140,14 @@
                 android:paddingBottom="10dp">
 
                 <TextView
-                    android:id="@+id/textViewSellFootballPrice"
+                    android:id="@+id/textViewSellBasketballPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Price"
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/editTextSellFootballPrice"
+                    android:id="@+id/editTextSellBasketballPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -183,14 +161,14 @@
                 android:paddingBottom="10dp">
 
                 <TextView
-                    android:id="@+id/textViewSellFootballStudentTicket"
+                    android:id="@+id/textViewSellBasketballStudentTicket"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Student Ticket"
                     android:textSize="18sp" />
 
                 <Spinner
-                    android:id="@+id/spinnerSellFootballStudentTicket"
+                    android:id="@+id/spinnerSellBasketballStudentTicket"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -202,14 +180,14 @@
                 android:paddingBottom="10dp">
 
                 <TextView
-                    android:id="@+id/textViewSellFootballValidated"
+                    android:id="@+id/textViewSellBasketballValidated"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Validated"
                     android:textSize="18sp" />
 
                 <Spinner
-                    android:id="@+id/spinnerSellFootballValidated"
+                    android:id="@+id/spinnerSellBasketballValidated"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -221,14 +199,14 @@
                 android:paddingBottom="10dp">
 
                 <TextView
-                    android:id="@+id/textViewSellFootballNegotiable"
+                    android:id="@+id/textViewSellBasketballNegotiable"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Negotiable"
                     android:textSize="18sp" />
 
                 <Spinner
-                    android:id="@+id/spinnerSellFootballNegotiable"
+                    android:id="@+id/spinnerSellBasketballNegotiable"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
