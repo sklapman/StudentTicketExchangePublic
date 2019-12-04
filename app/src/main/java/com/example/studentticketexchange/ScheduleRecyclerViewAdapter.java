@@ -32,9 +32,10 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
 
     @Override
     public void onBindViewHolder(@NonNull ScheduleViewHolder holder, int position) {
-        Game game = games.get(position);
+        final Game game = games.get(position);
         String[] months = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-        holder.dateText.setText(months[game.month - 1] + " " + game.day);
+        final String dateStr = months[game.month - 1] + " " + game.day;
+        holder.dateText.setText(dateStr);
         holder.opponentText.setText(games.get(position).opponent);
         int numTickets = 0; //Temporarily just set to zero, really we would find all tickets
         if(numTickets == 0) {
@@ -43,14 +44,16 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
             holder.avgPriceText.setText("");
             holder.maxPriceText.setText("");
             holder.noTicketsText.setText("Sold Out");
+            holder.gameItemParent.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(mContext, "No tickets available for " + game.opponent +
+                            " game on " + dateStr + ". Pleae select a different game.", Toast.LENGTH_LONG).show();
+                }
+            });
         }
         // else set the numAvailable, minPrice, avgPrice, maxPrice
-        holder.gameItemParent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(mContext, "Now would navigate to ticket options", Toast.LENGTH_SHORT);
-            }
-        });
+
     }
 
     @Override
