@@ -32,10 +32,7 @@ public class SellTicketDetails extends AppCompatActivity implements
         BottomNavigationView.OnNavigationItemSelectedListener,
         AdapterView.OnItemSelectedListener {
 
-    RadioButton radioSellButtonFootball, radioSellButtonBasketball, radioSellButtonHockey;
-    EditText editTextSellRow, editTextSellSection, editTextSellPrice;
-    Spinner spinnerSellQuantity, spinnerSellGame, spinnerSellStudentTicket, spinnerSellValidated, spinnerSellNegotiable;
-    Button buttonSellDone, buttonSellBack;
+    Button buttonSellFootball, buttonSellBasketball, buttonSellHockey, buttonSellBack;
 
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
@@ -47,83 +44,23 @@ public class SellTicketDetails extends AppCompatActivity implements
         setContentView(R.layout.activity_sell_ticket_details);
 
         //Implement listeners
-        radioSellButtonFootball = findViewById(R.id.radioSellButtonFootball);
-        radioSellButtonBasketball = findViewById(R.id.radioSellButtonBasketball);
-        radioSellButtonHockey = findViewById(R.id.radioSellButtonHockey);
-        editTextSellRow = findViewById(R.id.editTextSellFootballRow);
-        editTextSellSection = findViewById(R.id.editTextSellFootballSection);
-        editTextSellPrice = findViewById(R.id.editTextSellFootballPrice);
-        buttonSellDone = findViewById(R.id.buttonSellDone);
         buttonSellBack = findViewById(R.id.buttonSellBack);
-        spinnerSellQuantity = findViewById(R.id.spinnerSellFootballQuantity);
-        spinnerSellGame = findViewById(R.id.spinnerSellFootballGame);
-        spinnerSellStudentTicket = findViewById(R.id.spinnerSellFootballStudentTicket);
-        spinnerSellValidated = findViewById(R.id.spinnerSellFootballValidated);
-        spinnerSellNegotiable = findViewById(R.id.spinnerSellFootballNegotiable);
+        buttonSellFootball = findViewById(R.id.buttonSellFootball);
+        buttonSellBasketball = findViewById(R.id.buttonSellBasketball);
+        buttonSellHockey = findViewById(R.id.buttonSellHockey);
 
         //Activate listeners
-        buttonSellDone.setOnClickListener(this);
         buttonSellBack.setOnClickListener(this);
-        editTextSellRow.setOnEditorActionListener(this);
-        editTextSellSection.setOnEditorActionListener(this);
-        editTextSellPrice.setOnEditorActionListener(this);
-        radioSellButtonFootball.setOnCheckedChangeListener(this);
-        radioSellButtonBasketball.setOnCheckedChangeListener(this);
-        radioSellButtonHockey.setOnCheckedChangeListener(this);
-        spinnerSellQuantity.setOnItemSelectedListener(this);
-        spinnerSellGame.setOnItemSelectedListener(this);
-        spinnerSellStudentTicket.setOnItemSelectedListener(this);
-        spinnerSellValidated.setOnItemSelectedListener(this);
-        spinnerSellNegotiable.setOnItemSelectedListener(this);
+        buttonSellFootball.setOnClickListener(this);
+        buttonSellBasketball.setOnClickListener(this);
+        buttonSellHockey.setOnClickListener(this);
+
 
         mMainNav = (BottomNavigationView) findViewById(R.id.id_Navbar);
         mMainFrame = (FrameLayout) findViewById(R.id.id_frame);
 
         mMainNav.setOnNavigationItemSelectedListener(this);
 
-        //Quantity List
-        List<String> quantity = new ArrayList<String>();
-        quantity.add("1");
-        quantity.add("2");
-        quantity.add("3");
-        quantity.add("4");
-        quantity.add("5");
-        quantity.add("6");
-
-        ArrayAdapter<String> dataQuantity = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, quantity);
-
-        dataQuantity.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerSellQuantity.setAdapter(dataQuantity);
-
-        //Student Ticket List
-        List<String> student = new ArrayList<String>();
-        student.add("Yes");
-        student.add("No");
-
-        ArrayAdapter<String> dataStudent = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, student);
-
-        dataStudent.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerSellStudentTicket.setAdapter(dataStudent);
-
-        //Validated List
-        List<String> validated = new ArrayList<String>();
-        validated.add("Yes");
-        validated.add("No");
-
-        ArrayAdapter<String> dataValidated = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, validated);
-
-        dataValidated.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerSellValidated.setAdapter(dataValidated);
-
-        //Negotiable List
-        List<String> negotiable = new ArrayList<String>();
-        negotiable.add("Yes");
-        negotiable.add("No");
-
-        ArrayAdapter<String> dataNegotiable = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, validated);
-
-        dataNegotiable.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerSellNegotiable.setAdapter(dataNegotiable);
 
 
     }
@@ -145,8 +82,17 @@ public class SellTicketDetails extends AppCompatActivity implements
             Intent portalIntent = new Intent(this, MainActivity.class);
             startActivity(portalIntent);
 
-        } else if (view == buttonSellDone) {
+        } else if (view == buttonSellFootball) {
+            Intent portalIntent = new Intent(this, SellFootballTicket.class);
+            startActivity(portalIntent);
 
+        } else if (view == buttonSellBasketball) {
+            Intent portalIntent = new Intent(this, SellBasketballTicket.class);
+            startActivity(portalIntent);
+
+        } else if (view == buttonSellHockey) {
+            Intent portalIntent = new Intent(this, SellHockeyTicket.class);
+            startActivity(portalIntent);
         }
 
     }
