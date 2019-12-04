@@ -64,7 +64,7 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
     public class ScheduleViewHolder extends RecyclerView.ViewHolder{
         TextView dateText, opponentText, availableText, minPriceText, avgPriceText, maxPriceText, noTicketsText;
         RelativeLayout gameItemParent;
-        public ScheduleViewHolder(@NonNull View itemView) {
+        public ScheduleViewHolder(@NonNull View itemView) {//comment
             super(itemView);
             dateText = itemView.findViewById(R.id.textView_game_date);
             opponentText = itemView.findViewById(R.id.textView_game_opponent);
