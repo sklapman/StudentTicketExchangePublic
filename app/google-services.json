@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "836854750852-u5ib82a6eobqcsai5prklve5ak8rhdn5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.studentticketexchange",
+            "certificate_hash": "234c21347f939f9c4412426f5f8fee6aac52889a"
+          }
+        },
+        {
+          "client_id": "836854750852-q7flvln11mvighki1es3bvtb9h54c6k9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.studentticketexchange",
+            "certificate_hash": "885a28b5fcd996c147d35bf328c2a66be657337a"
+          }
+        },
+        {
           "client_id": "836854750852-m30p4vofqnsk6j2854vqfk1n4b9936m8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

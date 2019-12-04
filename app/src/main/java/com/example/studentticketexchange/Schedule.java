@@ -1,6 +1,7 @@
 package com.example.studentticketexchange;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -18,18 +19,28 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
 
 public class Schedule extends AppCompatActivity implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
     Button footballButton, basketballButton, hockeyButton, currentSelected;
-    TextView subtitle, footballTextView, basketballTextView, hockeyTextView;
+    TextView subtitle, footballTextView, basketballTextView, hockeyTextView, noGamesTextView;
     Drawable greyOutline, blueOutline;
     ImageView footballSelect, basketballSelect, hockeySelect;
+    RelativeLayout tableKey;
 
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
@@ -52,6 +63,8 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
         basketballSelect = findViewById(R.id.imageView_basketball_selectbar);
         hockeySelect = findViewById(R.id.imageView_hockey_selectbar);
         subtitle = findViewById(R.id.textView_schedule_subtitle);
+        noGamesTextView = findViewById(R.id.textView_sched_noGames);
+        tableKey = findViewById(R.id.RelativeLayout_sched_key);
         currentSelected = null;
 
         greyOutline = getResources().getDrawable(R.drawable.button_grey_border);
@@ -65,6 +78,8 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
         mMainFrame = (FrameLayout) findViewById(R.id.id_frame);
 
         mMainNav.setOnNavigationItemSelectedListener(this);
+
+        games = new ArrayList<>();
 
         initGames();
     }
@@ -87,6 +102,7 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
             subtitle.setText("UPCOMING GAMES");
 
             currentSelected = null;
+            initGames();
         }
         else if (view == footballButton) {
             footballTextView.setTypeface(null, Typeface.BOLD);
@@ -104,6 +120,7 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
             subtitle.setText("UPCOMING FOOTBALL GAMES");
 
             currentSelected = footballButton;
+            initGames();
         } else if (view == basketballButton) {
             footballTextView.setTypeface(null, Typeface.NORMAL);
             basketballTextView.setTypeface(null, Typeface.BOLD);
@@ -120,6 +137,7 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
             subtitle.setText("UPCOMING BASKETBALL GAMES");
 
             currentSelected = basketballButton;
+            initGames();
         } else if (view == hockeyButton) {
             footballTextView.setTypeface(null, Typeface.NORMAL);
             basketballTextView.setTypeface(null, Typeface.NORMAL);
@@ -136,6 +154,7 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
             subtitle.setText("UPCOMING HOCKEY GAMES");
 
             currentSelected = hockeyButton;
+            initGames();
         }
     }
 
@@ -235,15 +254,103 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
     }
 
     private void initGames() {
-        games = new ArrayList<>();
-        games.add(new Game(1, "Middle Tennesee", 8, 31, 2019));
-        games.add(new Game(1, "Army", 9, 9, 2019));
-        games.add(new Game(1, "Rutgers", 9, 9, 2019));
-        games.add(new Game(1, "Iowa", 9, 9, 2019));
-        games.add(new Game(1, "Notre Dame", 9, 9, 2019));
-        games.add(new Game(1, "Michigan State", 9, 9, 2019));
-        games.add(new Game(1, "Ohio State", 9, 9, 2019));
-        initScheduleRecyclerView();
+        games.clear();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference myRef = database.getReference().child("gameSchedule");
+        final Calendar currentDate = Calendar.getInstance();
+        final Calendar gameDate = Calendar.getInstance();
+        if(currentSelected == null){
+            noGamesTextView.setTextSize(25);
+            noGamesTextView.setText("PLEASE SELECT A SPORT");
+            tableKey.setVisibility(View.INVISIBLE);
+        } else if(currentSelected == footballButton){
+            myRef.orderByChild("sport").equalTo(1).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot gameSnap : dataSnapshot.getChildren()) {
+                        Game gameItem = gameSnap.getValue(Game.class);
+                        gameDate.set(Calendar.MONTH, gameItem.month - 1);
+                        gameDate.set(Calendar.DATE, gameItem.day);
+                        gameDate.set(Calendar.YEAR, gameItem.year);
+                        if(!gameDate.before(currentDate)){
+                            games.add(gameItem);
+                        }
+                    }
+                    if(games.isEmpty()){
+                        tableKey.setVisibility(View.INVISIBLE);
+                        noGamesTextView.setTextSize(20);
+                        noGamesTextView.setText("No more games remaining on schedule");
+                    } else {
+                        tableKey.setVisibility(View.VISIBLE);
+                        noGamesTextView.setText("");
+                        Collections.sort(games);
+                        initScheduleRecyclerView();
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        } else if(currentSelected == basketballButton){
+            myRef.orderByChild("sport").equalTo(2).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot gameSnap : dataSnapshot.getChildren()) {
+                        Game gameItem = gameSnap.getValue(Game.class);
+                        gameDate.set(Calendar.MONTH, gameItem.month - 1);
+                        gameDate.set(Calendar.DATE, gameItem.day);
+                        gameDate.set(Calendar.YEAR, gameItem.year);
+                        if(!gameDate.before(currentDate)){
+                            games.add(gameItem);
+                        }
+                    }
+                    if(games.isEmpty()){
+                        tableKey.setVisibility(View.INVISIBLE);
+                        noGamesTextView.setTextSize(20);
+                        noGamesTextView.setText("No more games remaining on schedule");
+                    } else {
+                        tableKey.setVisibility(View.VISIBLE);
+                        noGamesTextView.setText("");
+                        Collections.sort(games);
+                        initScheduleRecyclerView();
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        } else if(currentSelected == hockeyButton){
+            myRef.orderByChild("sport").equalTo(3).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot gameSnap : dataSnapshot.getChildren()) {
+                        Game gameItem = gameSnap.getValue(Game.class);
+                        gameDate.set(Calendar.MONTH, gameItem.month - 1);
+                        gameDate.set(Calendar.DATE, gameItem.day);
+                        gameDate.set(Calendar.YEAR, gameItem.year);
+                        if(!gameDate.before(currentDate)){
+                            games.add(gameItem);
+                        }
+                    }
+                    if(games.isEmpty()){
+                        tableKey.setVisibility(View.INVISIBLE);
+                        noGamesTextView.setTextSize(20);
+                        noGamesTextView.setText("No more games remaining on schedule");
+                    } else {
+                        tableKey.setVisibility(View.VISIBLE);
+                        noGamesTextView.setText("");
+                        Collections.sort(games);
+                        initScheduleRecyclerView();
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
     }
 
     private void initScheduleRecyclerView() {
