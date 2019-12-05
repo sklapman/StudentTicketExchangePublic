@@ -11,7 +11,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".RecyclerViewTest"></activity>
         <activity android:name=".ChoiceBuySell" />
-        <activity android:name=".Chat" />
+        <activity android:name=".Chat"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".Inbox" />
         <activity android:name=".SellTicketDetails" />
         <activity android:name=".Profile" />
