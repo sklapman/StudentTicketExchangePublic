@@ -32,8 +32,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
 public class SellTicketDetails extends AppCompatActivity implements
         View.OnClickListener,
         BottomNavigationView.OnNavigationItemSelectedListener,
@@ -82,14 +80,14 @@ public class SellTicketDetails extends AppCompatActivity implements
         //implement listeners
         buttonSellBack = findViewById(R.id.button_sell_details_back);
         buttonSellDone = findViewById(R.id.button_sell_details_done);
-        editTextSellPrice = findViewById(R.id.editText_sell_detail_price);
-        spinnerSellGame = findViewById(R.id.spinner_sell_detail_game);
-        spinnerSellSection = findViewById(R.id.spinner_sell_detail_section);
-        spinnerSellRow = findViewById(R.id.spinner_sell_detail_row);
-        spinnerSellQuantity = findViewById(R.id.spinner_sell_detail_quantity);
-        spinnerSellStudentTicket = findViewById(R.id.spinner_sell_detail_student);
-        spinnerSellValidated = findViewById(R.id.spinner_sell_detail_validated);
-        spinnerSellNegotiable = findViewById(R.id.spinner_sell_detail_negotiable);
+        editTextSellPrice = findViewById(R.id.editText_sell_details_price);
+        spinnerSellGame = findViewById(R.id.spinner_sell_details_game);
+        spinnerSellSection = findViewById(R.id.spinner_sell_details_section);
+        spinnerSellRow = findViewById(R.id.spinner_sell_details_row);
+        spinnerSellQuantity = findViewById(R.id.spinner_sell_details_quantity);
+        spinnerSellStudentTicket = findViewById(R.id.spinner_sell_details_student);
+        spinnerSellValidated = findViewById(R.id.spinner_sell_details_validated);
+        spinnerSellNegotiable = findViewById(R.id.spinner_sell_details_negotiable);
 
         //activate listeners
         buttonSellDone.setOnClickListener(this);
