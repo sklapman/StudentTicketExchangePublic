@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:id="@+id/scrollViewSell"
+        android:id="@+id/scrollViewSell_hockey"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="5dp"

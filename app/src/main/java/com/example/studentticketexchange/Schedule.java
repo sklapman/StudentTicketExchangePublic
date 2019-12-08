@@ -46,6 +46,7 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
     private FrameLayout mMainFrame;
 
     private ArrayList<Game> games;
+    private ArrayList<String> gameKeys;
 
 
     @Override
@@ -80,6 +81,7 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
         mMainNav.setOnNavigationItemSelectedListener(this);
 
         games = new ArrayList<>();
+        gameKeys = new ArrayList<>();
 
         initGames();
     }
@@ -255,6 +257,7 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
 
     private void initGames() {
         games.clear();
+        gameKeys.clear();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference().child("gameSchedule");
         final Calendar currentDate = Calendar.getInstance();
@@ -272,8 +275,10 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
                         gameDate.set(Calendar.MONTH, gameItem.month - 1);
                         gameDate.set(Calendar.DATE, gameItem.day);
                         gameDate.set(Calendar.YEAR, gameItem.year);
+                        String gameKey = gameSnap.getKey();
                         if(!gameDate.before(currentDate)){
                             games.add(gameItem);
+                            gameKeys.add(gameKey);
                         }
                     }
                     if(games.isEmpty()){
@@ -301,8 +306,10 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
                         gameDate.set(Calendar.MONTH, gameItem.month - 1);
                         gameDate.set(Calendar.DATE, gameItem.day);
                         gameDate.set(Calendar.YEAR, gameItem.year);
+                        String gameKey = gameSnap.getKey();
                         if(!gameDate.before(currentDate)){
                             games.add(gameItem);
+                            gameKeys.add(gameKey);
                         }
                     }
                     if(games.isEmpty()){
@@ -330,8 +337,10 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
                         gameDate.set(Calendar.MONTH, gameItem.month - 1);
                         gameDate.set(Calendar.DATE, gameItem.day);
                         gameDate.set(Calendar.YEAR, gameItem.year);
+                        String gameKey = gameSnap.getKey();
                         if(!gameDate.before(currentDate)){
                             games.add(gameItem);
+                            gameKeys.add(gameKey);
                         }
                     }
                     if(games.isEmpty()){
@@ -355,7 +364,7 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
 
     private void initScheduleRecyclerView() {
         RecyclerView recyclerView_schedule = findViewById(R.id.recyclerView_schedule);
-        ScheduleRecyclerViewAdapter scheduleRecyclerViewAdapter = new ScheduleRecyclerViewAdapter(games, this);
+        ScheduleRecyclerViewAdapter scheduleRecyclerViewAdapter = new ScheduleRecyclerViewAdapter(games, gameKeys, this);
         recyclerView_schedule.setAdapter(scheduleRecyclerViewAdapter);
         recyclerView_schedule.setLayoutManager(new LinearLayoutManager(this));
     }

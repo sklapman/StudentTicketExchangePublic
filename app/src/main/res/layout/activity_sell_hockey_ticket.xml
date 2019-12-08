@@ -6,10 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".SellHockeyTicket">
 
-
+    <TextView
+        android:id="@+id/textView_sell_hockey_noGames"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No games remaining on schedule"
+        android:textColor="#000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonSellBack"
+        android:id="@+id/buttonSellBack_hockey"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -20,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:id="@+id/scrollViewSell"
+        android:id="@+id/scrollViewSell_hockey"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="5dp"
@@ -29,10 +39,10 @@
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonSellDone"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSellDone_hockey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSellBack">
+        app:layout_constraintTop_toBottomOf="@+id/buttonSellBack_hockey">
 
         <TableLayout
             android:layout_width="match_parent"
@@ -216,7 +226,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/buttonSellDone"
+        android:id="@+id/buttonSellDone_hockey"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"

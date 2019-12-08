@@ -3,6 +3,7 @@ package com.example.studentticketexchange;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -19,15 +20,23 @@ import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 public class SellHockeyTicket extends AppCompatActivity implements
-        TextView.OnEditorActionListener,
-        RadioButton.OnCheckedChangeListener,
         View.OnClickListener,
         BottomNavigationView.OnNavigationItemSelectedListener,
         AdapterView.OnItemSelectedListener {
@@ -36,9 +45,18 @@ public class SellHockeyTicket extends AppCompatActivity implements
     EditText editTextSellHockeyPrice;
     Spinner spinnerSellHockeyGame, spinnerSellHockeySection, spinnerSellHockeyRow, spinnerSellHockeyQuantity,
             spinnerSellHockeyStudentTicket, spinnerSellHockeyValidated, spinnerSellHockeyNegotiable;
+    private ArrayList<String> gameKeys;
 
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
+
+    String gameID_selected;
+    Boolean studentTicket_selected;
+    Boolean validated_selected;
+    Boolean negotiable_selected;
+    int quantity_selected;
+    int section_selected;
+    int row_selected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +64,8 @@ public class SellHockeyTicket extends AppCompatActivity implements
         setContentView(R.layout.activity_sell_hockey_ticket);
 
         //implement listeners
-        buttonSellBack = findViewById(R.id.buttonSellBack);
-        buttonSellDone = findViewById(R.id.buttonSellDone);
+        buttonSellBack = findViewById(R.id.buttonSellBack_hockey);
+        buttonSellDone = findViewById(R.id.buttonSellDone_hockey);
         editTextSellHockeyPrice = findViewById(R.id.editTextSellHockeyPrice);
         spinnerSellHockeyGame = findViewById(R.id.spinnerSellHockeyGame);
         spinnerSellHockeySection = findViewById(R.id.spinnerSellHockeySection);
@@ -60,7 +78,6 @@ public class SellHockeyTicket extends AppCompatActivity implements
         //activate listeners
         buttonSellDone.setOnClickListener(this);
         buttonSellBack.setOnClickListener(this);
-        editTextSellHockeyPrice.setOnEditorActionListener(this);
         spinnerSellHockeyGame.setOnItemSelectedListener(this);
         spinnerSellHockeySection.setOnItemSelectedListener(this);
         spinnerSellHockeyRow.setOnItemSelectedListener(this);
@@ -74,21 +91,14 @@ public class SellHockeyTicket extends AppCompatActivity implements
 
         mMainNav.setOnNavigationItemSelectedListener(this);
 
-        //Game List
-        List<String> game = new ArrayList<String>();
-        game.add("Windsor");
-        game.add("Clarkson");
-        game.add("Lake Superior State");
-        game.add("Western Michigan");
-        game.add("Minnesota");
-        game.add("Michigan State");
-        game.add("Penn State");
-        game.add("Ohio State");
-        game.add("Wisconsin");
-
-        ArrayAdapter<String> dataGame = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, game);
-        dataGame.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerSellHockeyGame.setAdapter(dataGame);
+        //Selected ticket values start at null
+        gameID_selected = null;
+        studentTicket_selected = null;
+        validated_selected = null;
+        negotiable_selected = null;
+        section_selected = -1;
+        row_selected = -1;
+        quantity_selected = -1;
 
         //Section List
         List<String> section = new ArrayList<String>();
@@ -196,6 +206,25 @@ public class SellHockeyTicket extends AppCompatActivity implements
         dataNegotiable.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSellHockeyNegotiable.setAdapter(dataNegotiable);
 
+        //Game List
+        gameKeys = new ArrayList<>();
+        setGamesAvailable();
+
+        //List<String> games = new ArrayList<String>();
+        //game.add("Windsor");
+        //game.add("Clarkson");
+        //game.add("Lake Superior State");
+        //game.add("Western Michigan");
+        //game.add("Minnesota");
+        //game.add("Michigan State");
+        //game.add("Penn State");
+        //game.add("Ohio State");
+        //game.add("Wisconsin");
+
+        //ArrayAdapter<String> dataGame = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, games);
+        //dataGame.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //spinnerSellHockeyGame.setAdapter(dataGame);
+        findViewById(R.id.textView_sell_hockey_noGames).setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -265,30 +294,86 @@ public class SellHockeyTicket extends AppCompatActivity implements
             Intent portalIntent = new Intent(this, SellTicketDetails.class);
             startActivity(portalIntent);
         } else if (view == buttonSellDone) {
-
+            Double price_selected = -1.0;
+            try {
+                price_selected = Double.parseDouble(editTextSellHockeyPrice.getText().toString());
+            } catch(NumberFormatException e) {
+                Toast.makeText(this, "Please enter a price in the proper format", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if(section_selected == -1){
+                Toast.makeText(this, "Please select a section", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if(row_selected == -1){
+                Toast.makeText(this, "Please select a row", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if(quantity_selected == -1){
+                Toast.makeText(this, "Please select a quantity of tickets for this listing", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if(studentTicket_selected == null){
+                Toast.makeText(this, "Please select if ticket is a student ticket or not", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if(validated_selected == null){
+                Toast.makeText(this, "Please select if ticket is a validate ticket or not", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if(negotiable_selected == null){
+                Toast.makeText(this, "Please select if ticket is a validate ticket or not", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String name = user.getEmail();
+            Listing newListing = new Listing(gameID_selected, name, section_selected, row_selected,
+                    quantity_selected, price_selected, studentTicket_selected, validated_selected,
+                    negotiable_selected);
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myRef = database.getReference("listings");
+            myRef.push().setValue(newListing);
+            Toast.makeText(this, "Listing successfully placed on market", Toast.LENGTH_SHORT).show();
         }
 
     }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        String strSelection = adapterView.getItemAtPosition(i).toString();
-
+        if(adapterView.getId() == spinnerSellHockeyGame.getId()){
+            gameID_selected = gameKeys.get(i);
+        } else if(adapterView.getId() == spinnerSellHockeySection.getId()){
+            section_selected = Integer.parseInt(adapterView.getItemAtPosition(i).toString());
+        } else if(adapterView.getId() == spinnerSellHockeyRow.getId()){
+            row_selected = Integer.parseInt(adapterView.getItemAtPosition(i).toString());
+        } else if(adapterView.getId() == spinnerSellHockeyQuantity.getId()){
+            quantity_selected = Integer.parseInt(adapterView.getItemAtPosition(i).toString());
+        } else if(adapterView.getId() == spinnerSellHockeyStudentTicket.getId()){
+            if(adapterView.getItemAtPosition(i).toString() == "Yes"){
+                studentTicket_selected = true;
+            } else if(adapterView.getItemAtPosition(i).toString() == "No"){
+                studentTicket_selected = false;
+            }
+        } else if(adapterView.getId() == spinnerSellHockeyValidated.getId()){
+            if(adapterView.getItemAtPosition(i).toString() == "Yes"){
+                validated_selected = true;
+            } else if(adapterView.getItemAtPosition(i).toString() == "No"){
+                validated_selected = false;
+            }
+        } else if(adapterView.getId() == spinnerSellHockeyNegotiable.getId()){
+            if(adapterView.getItemAtPosition(i).toString() == "Yes"){
+                negotiable_selected = true;
+            } else if(adapterView.getItemAtPosition(i).toString() == "No"){
+                negotiable_selected = false;
+            }
+        }
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-
-    }
-
-    @Override
-    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-
-    }
-
-    @Override
-    public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-        return false;
+        if(adapterView.getId() == spinnerSellHockeyGame.getId()){
+            gameID_selected = null;
+        }
     }
 
     @Override
@@ -316,6 +401,79 @@ public class SellHockeyTicket extends AppCompatActivity implements
 
             default:
                 return false;
+        }
+    }
+
+    public void setGamesAvailable(){
+        gameKeys.clear();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference myRef = database.getReference().child("gameSchedule");
+        final Calendar currentDate = Calendar.getInstance();
+        final Context context = this;
+        myRef.orderByChild("sport").equalTo(3).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<Game> games = new ArrayList<Game>();
+                for (DataSnapshot gameSnap : dataSnapshot.getChildren()) {
+                    Game gameItem = gameSnap.getValue(Game.class);
+                    Calendar gameDate = Calendar.getInstance();
+                    gameDate.set(Calendar.MONTH, gameItem.month - 1);
+                    gameDate.set(Calendar.DATE, gameItem.day);
+                    gameDate.set(Calendar.YEAR, gameItem.year);
+                    String gameKey = gameSnap.getKey();
+                    if(!gameDate.before(currentDate)){
+                        if(games.isEmpty()){
+                            games.add(gameItem);
+                            gameKeys.add(gameKey);
+                        } else {
+                            Boolean found = false;
+                            for (int i = 0; i < games.size(); i++){
+                                Game gameComp = games.get(i);
+                                if(gameItem.compareTo(gameComp) < 0 ){
+                                    games.add(i, gameItem);
+                                    gameKeys.add(i, gameKey);
+                                    found = true;
+                                    break;
+                                }
+                            }
+                            if(!found){
+                                games.add(gameItem);
+                                gameKeys.add(gameKey);
+                            }
+                        }
+                    }
+                }
+                if(games.isEmpty()){
+                    setVisibility(false);
+                } else {
+                    setVisibility(true);
+                    List<String> gameStrings = new ArrayList<String>();
+                    for(Game gameItem : games){
+                        String[] months = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+                        String dateStr = months[gameItem.month - 1] + " " + gameItem.day;
+                        gameStrings.add(dateStr + " - " + gameItem.opponent);
+                    }
+                    ArrayAdapter<String> dataGame = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, gameStrings);
+                    dataGame.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinnerSellHockeyGame.setAdapter(dataGame);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public void setVisibility(Boolean tf){
+        if(tf){
+            //Set all views to be visible again
+            findViewById(R.id.textView_sell_hockey_noGames).setVisibility(View.INVISIBLE);
+            findViewById(R.id.scrollViewSell_hockey).setVisibility(View.VISIBLE);
+        } else {
+            //No games set all to be invisible
+            findViewById(R.id.textView_sell_hockey_noGames).setVisibility(View.VISIBLE);
+            findViewById(R.id.scrollViewSell_hockey).setVisibility(View.INVISIBLE);
         }
     }
 }

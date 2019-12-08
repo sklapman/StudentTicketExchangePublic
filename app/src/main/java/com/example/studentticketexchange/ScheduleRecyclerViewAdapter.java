@@ -11,14 +11,20 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRecyclerViewAdapter.ScheduleViewHolder> {
     private ArrayList<Game> games = new ArrayList<>();
+    private ArrayList<String> gameKeys = new ArrayList<>();
     private Context mContext;
 
-    ScheduleRecyclerViewAdapter(ArrayList<Game> games, Context mContext) {
+    ScheduleRecyclerViewAdapter(ArrayList<Game> games, ArrayList<String> gameKeys, Context mContext) {
         this.games = games;
+        this.gameKeys = gameKeys;
         this.mContext = mContext;
     }
 
@@ -32,11 +38,14 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
 
     @Override
     public void onBindViewHolder(@NonNull ScheduleViewHolder holder, int position) {
+        final String key = gameKeys.get(position);
         final Game game = games.get(position);
         String[] months = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
         final String dateStr = months[game.month - 1] + " " + game.day;
         holder.dateText.setText(dateStr);
-        holder.opponentText.setText(games.get(position).opponent);
+        holder.opponentText.setText(game.opponent);
+
+
         int numTickets = 0; //Temporarily just set to zero, really we would find all tickets
         if(numTickets == 0) {
             holder.availableText.setText("");

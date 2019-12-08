@@ -15,8 +15,10 @@
             android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".Inbox" />
         <activity android:name=".SellTicketDetails" />
+        <activity android:name=".SellHockeyTicket" />
         <activity android:name=".Profile" />
         <activity android:name=".BuyTicketDetails" />
+        <activity android:name=".FirebaseLogin" />
         <activity android:name=".AllTicketsForGame" />
         <activity android:name=".Schedule" />
         <activity android:name=".MainActivity">
