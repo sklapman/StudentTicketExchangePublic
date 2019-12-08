@@ -96,7 +96,7 @@ public class AllTicketsForGame extends AppCompatActivity implements View.OnClick
         }
 
         if (item.getItemId() == R.id.itemSell) {
-            Intent searchIntent = new Intent(this, SellTicketDetails.class);
+            Intent searchIntent = new Intent(this, SellTicketOption.class);
             startActivity(searchIntent);
         }
 
@@ -129,7 +129,7 @@ public class AllTicketsForGame extends AppCompatActivity implements View.OnClick
                 return true;
 
             case R.id.itemSell:
-                Intent SellIntent = new Intent(this, SellTicketDetails.class);
+                Intent SellIntent = new Intent(this, SellTicketOption.class);
                 startActivity(SellIntent);
                 return true;
 

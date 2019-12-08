@@ -2,31 +2,32 @@ package com.example.studentticketexchange;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.Spinner;
 
-import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
-public class Profile extends AppCompatActivity implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
-
-    Button buttonLogout;
-    TextView textViewUserName;
-
-    private FirebaseAuth mAuth;
+public class SellTicketOption extends AppCompatActivity implements
+        View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener{
+    Button buttonSellFootball, buttonSellBasketball, buttonSellHockey, buttonSellBack;
 
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
@@ -35,48 +36,45 @@ public class Profile extends AppCompatActivity implements View.OnClickListener, 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_sell_ticket_option);
 
-        buttonLogout = findViewById(R.id.buttonLogout);
-        textViewUserName = findViewById(R.id.textViewUserName);
+        //Implement listeners
+        buttonSellBack = findViewById(R.id.button_sell_option_back);
+        buttonSellFootball = findViewById(R.id.button_sell_option_football);
+        buttonSellBasketball = findViewById(R.id.button_sell_option_basketball);
+        buttonSellHockey = findViewById(R.id.button_sell_option_hockey);
 
-        buttonLogout.setOnClickListener(this);
-        mAuth = FirebaseAuth.getInstance();
+        //Activate listeners
+        buttonSellBack.setOnClickListener(this);
+        buttonSellFootball.setOnClickListener(this);
+        buttonSellBasketball.setOnClickListener(this);
+        buttonSellHockey.setOnClickListener(this);
+
 
         mMainNav = (BottomNavigationView) findViewById(R.id.id_Navbar);
         mMainFrame = (FrameLayout) findViewById(R.id.id_frame);
 
-
         mMainNav.setOnNavigationItemSelectedListener(this);
+
+
 
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        switch (menuItem.getItemId()) {
-            case R.id.itemInbox:
-                Intent InboxIntent = new Intent(this, Inbox.class);
-                startActivity(InboxIntent);
-                return true;
-
-            case R.id.itemProfile:
-                Intent ProfileIntent = new Intent(this, Profile.class);
-                startActivity(ProfileIntent);
-                return true;
-
-            case R.id.itemSchedule:
-                Intent ScheduleIntent = new Intent(this, Schedule.class);
-                startActivity(ScheduleIntent);
-                return true;
-
-            case R.id.itemSell:
-                Intent SellIntent = new Intent(this, SellTicketOption.class);
-                startActivity(SellIntent);
-                return true;
-
-            default:
-                return false;
-
+    public void onClick(View view) {
+        Intent sellIntent = new Intent(this, SellTicketDetails.class);
+        if (view == buttonSellBack) {
+            Intent portalIntent = new Intent(this, MainActivity.class);
+            startActivity(portalIntent);
+        } else if (view == buttonSellFootball) {
+            sellIntent.putExtra("sport", 1);
+            startActivity(sellIntent);
+        } else if (view == buttonSellBasketball) {
+            sellIntent.putExtra("sport", 2);
+            startActivity(sellIntent);
+        } else if (view == buttonSellHockey) {
+            sellIntent.putExtra("sport", 3);
+            startActivity(sellIntent);
         }
     }
 
@@ -132,7 +130,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener, 
         }
 
         if (item.getItemId() == R.id.itemSell) {
-            Intent searchIntent = new Intent(this, SellTicketOption.class);
+            Intent searchIntent = new Intent(this, SellTicketDetails.class);
             startActivity(searchIntent);
         }
 
@@ -146,20 +144,31 @@ public class Profile extends AppCompatActivity implements View.OnClickListener, 
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        Toast.makeText(this, "User: "+currentUser, Toast.LENGTH_LONG).show();
-    }
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.itemInbox:
+                Intent InboxIntent = new Intent(this, Inbox.class);
+                startActivity(InboxIntent);
+                return true;
 
-    @Override
-    public void onClick(View v) {
-        if (v == buttonLogout) {
-            Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
-            mAuth.signOut();
-            Intent mainIntent = new Intent(this, MainActivity.class);
-            startActivity(mainIntent);
+            case R.id.itemProfile:
+                Intent ProfileIntent = new Intent(this, Profile.class);
+                startActivity(ProfileIntent);
+                return true;
+
+            case R.id.itemSchedule:
+                Intent ScheduleIntent = new Intent(this, Schedule.class);
+                startActivity(ScheduleIntent);
+                return true;
+
+            case R.id.itemSell:
+                Intent SellIntent = new Intent(this, SellTicketDetails.class);
+                startActivity(SellIntent);
+                return true;
+
+            default:
+                return false;
+
         }
     }
 }

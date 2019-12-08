@@ -135,7 +135,7 @@ public class RecyclerViewTest extends AppCompatActivity implements
         }
 
         if (item.getItemId() == R.id.itemSell) {
-            Intent searchIntent = new Intent(this, SellTicketDetails.class);
+            Intent searchIntent = new Intent(this, SellTicketOption.class);
             startActivity(searchIntent);
         }
 
@@ -167,7 +167,7 @@ public class RecyclerViewTest extends AppCompatActivity implements
                 return true;
 
             case R.id.itemSell:
-                Intent SellIntent = new Intent(this, SellTicketDetails.class);
+                Intent SellIntent = new Intent(this, SellTicketOption.class);
                 startActivity(SellIntent);
                 return true;
 

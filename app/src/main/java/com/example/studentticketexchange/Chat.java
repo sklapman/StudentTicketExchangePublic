@@ -221,7 +221,7 @@ public class Chat extends AppCompatActivity implements BottomNavigationView.OnNa
         }
 
         if (item.getItemId() == R.id.itemSell) {
-            Intent searchIntent = new Intent(this, SellTicketDetails.class);
+            Intent searchIntent = new Intent(this, SellTicketOption.class);
             startActivity(searchIntent);
         }
 
@@ -254,7 +254,7 @@ public class Chat extends AppCompatActivity implements BottomNavigationView.OnNa
                 return true;
 
             case R.id.itemSell:
-                Intent SellIntent = new Intent(this, SellTicketDetails.class);
+                Intent SellIntent = new Intent(this, SellTicketOption.class);
                 startActivity(SellIntent);
                 return true;
 

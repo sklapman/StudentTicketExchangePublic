@@ -179,7 +179,7 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
                 return true;
 
             case R.id.itemSell:
-                Intent SellIntent = new Intent(this, SellTicketDetails.class);
+                Intent SellIntent = new Intent(this, SellTicketOption.class);
                 startActivity(SellIntent);
                 return true;
 
@@ -242,7 +242,7 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
         }
 
         if (item.getItemId() == R.id.itemSell) {
-            Intent searchIntent = new Intent(this, SellTicketDetails.class);
+            Intent searchIntent = new Intent(this, SellTicketOption.class);
             startActivity(searchIntent);
         }
 

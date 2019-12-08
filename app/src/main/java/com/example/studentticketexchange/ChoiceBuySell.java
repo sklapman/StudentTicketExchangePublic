@@ -45,7 +45,7 @@ public class ChoiceBuySell extends AppCompatActivity implements View.OnClickList
         if(view == buyButton){
             startActivity(new Intent(ChoiceBuySell.this, Schedule.class));
         } else if(view == sellButton){
-            startActivity(new Intent(ChoiceBuySell.this, SellTicketDetails.class));
+            startActivity(new Intent(ChoiceBuySell.this, SellTicketOption.class));
         }
     }
 
@@ -101,7 +101,7 @@ public class ChoiceBuySell extends AppCompatActivity implements View.OnClickList
         }
 
         if (item.getItemId() == R.id.itemSell) {
-            Intent searchIntent = new Intent(this, SellTicketDetails.class);
+            Intent searchIntent = new Intent(this, SellTicketOption.class);
             startActivity(searchIntent);
         }
 
@@ -134,7 +134,7 @@ public class ChoiceBuySell extends AppCompatActivity implements View.OnClickList
                 return true;
 
             case R.id.itemSell:
-                Intent SellIntent = new Intent(this, SellTicketDetails.class);
+                Intent SellIntent = new Intent(this, SellTicketOption.class);
                 startActivity(SellIntent);
                 return true;
 
