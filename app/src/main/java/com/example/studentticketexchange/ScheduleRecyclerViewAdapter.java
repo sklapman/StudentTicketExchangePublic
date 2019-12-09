@@ -101,6 +101,7 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
                             String game_date = game.month + "/" + game.day + "/" + game.year;
                             allTixIntent.putExtra("OPPONENT",game_opponent);
                             allTixIntent.putExtra("GAME_DATE",game_date);
+                            allTixIntent.putExtra("GAME_KEY", key);
                             mContext.startActivity(allTixIntent);
                         }
                     });
