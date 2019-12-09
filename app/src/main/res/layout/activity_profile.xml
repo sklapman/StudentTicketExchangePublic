@@ -11,32 +11,35 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toTopOf="@id/id_Navbar"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="0dp">
 
-    <TextView
+        <TextView
             android:id="@+id/textViewUserName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
             android:layout_marginLeft="32dp"
+            android:layout_marginTop="64dp"
             android:text="User Name" />
 
         <Button
             android:id="@+id/buttonLogout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
             android:layout_marginLeft="32dp"
-            android:textColor="#FF0000"
-            android:text="Logout" />
+            android:layout_marginTop="100dp"
+            android:text="Logout"
+            android:textColor="#FF0000" />
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/id_Navbar"
+        android:layout_width="match_parent"
         android:layout_height="56dp"
+        app:labelVisibilityMode="auto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/nav_botton_menu"
-        android:layout_width="match_parent" />
+        app:menu="@menu/nav_botton_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>
