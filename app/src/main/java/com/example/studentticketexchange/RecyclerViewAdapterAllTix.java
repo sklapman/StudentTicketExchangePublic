@@ -37,11 +37,12 @@ public class RecyclerViewAdapterAllTix extends RecyclerView.Adapter<RecyclerView
 
     @Override
     public void onBindViewHolder(@NonNull AllTixViewHolder holder, final int position) {
-        holder.textViewSection.setText(listings.get(position).section);
+        final String sectionAsString = Integer.toString(listings.get(position).section);
+        holder.textViewSection.setText(sectionAsString);
         holder.parent_layout.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, listings.get(position).section, Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Section "+sectionAsString, Toast.LENGTH_SHORT).show();
             }
         });
     }

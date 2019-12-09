@@ -1,6 +1,7 @@
 package com.example.studentticketexchange;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,21 +12,33 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.studentticketexchange.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class AllTicketsForGame extends AppCompatActivity implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
+public class AllTicketsForGame extends AppCompatActivity implements View.OnClickListener,
+        BottomNavigationView.OnNavigationItemSelectedListener {
+
+    Button buttonSell;
+    TextView textViewGameName, textViewGameDate;
 
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
 
-    private ArrayList<Listing> listings;
-
+    RecyclerView recyclerViewTix;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,14 +47,69 @@ public class AllTicketsForGame extends AppCompatActivity implements View.OnClick
         mMainNav = (BottomNavigationView) findViewById(R.id.id_Navbar);
         mMainFrame = (FrameLayout) findViewById(R.id.id_frame);
 
+        buttonSell = findViewById(R.id.buttonSell);
+        textViewGameName = findViewById(R.id.textViewGameName);
+        textViewGameDate = findViewById(R.id.textViewGameDate);
+        String getOpponent;
+        String getGameDate;
+
+        buttonSell.setOnClickListener(this);
+
+        recyclerViewTix = findViewById(R.id.recyclerViewTix);
+
         mMainNav.setOnNavigationItemSelectedListener(this);
 
-        initListings();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference myRef = database.getReference("listings");
+
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                getOpponent = null;
+                getGameDate = null;
+                textViewGameDate.setText(getGameDate);
+                textViewGameName.setText(getOpponent);
+
+            } else {
+                getOpponent = extras.getString("OPPONENT");
+                getGameDate = extras.getString("GAME_DATE");
+                textViewGameDate.setText(getGameDate);
+                textViewGameName.setText(getOpponent);
+            }
+        } else {
+            getOpponent = (String) savedInstanceState.getSerializable("OPPONENT");
+            getGameDate = (String) savedInstanceState.getSerializable("GAME_DATE");
+            textViewGameDate.setText(getGameDate);
+            textViewGameName.setText(getOpponent);
+        }
+
+        myRef.orderByChild("opponent").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<Listing> listings = new ArrayList<>();
+                for(DataSnapshot postSnapshot: dataSnapshot.getChildren()){
+                   Listing listing = postSnapshot.getValue(Listing.class);
+                   listings.add(listing);
+                }
+
+                RecyclerViewAdapterAllTix recyclerViewAdapterAllTix = new RecyclerViewAdapterAllTix(listings, AllTicketsForGame.this);
+                recyclerViewTix.setAdapter(recyclerViewAdapterAllTix);
+                recyclerViewTix.setLayoutManager(new LinearLayoutManager(AllTicketsForGame  .this));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override
     public void onClick(View v) {
-
+        if(v == buttonSell) {
+            Intent sellIntent = new Intent(this, SellTicketOption.class);
+            startActivity(sellIntent);
+        }
     }
 
     @Override
@@ -137,37 +205,5 @@ public class AllTicketsForGame extends AppCompatActivity implements View.OnClick
                 return false;
 
         }
-    }
-
-    private void initListings() {
-        /*listings = new ArrayList<>();
-        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "330","Selling together"));
-        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "331","Selling together"));
-        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "332","Selling together"));
-        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "333","Selling together"));
-        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "334","Selling together"));
-        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "335","Selling together"));
-        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "336","Selling together"));
-        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "337","Selling together"));
-        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "338","Selling together"));
-        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "339","Selling together"));
-        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "330","Selling together"));
-        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "331","Selling together"));
-        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "332","Selling together"));
-        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "333","Selling together"));
-        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "334","Selling together"));
-        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "335","Selling together"));
-        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "336","Selling together"));
-        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "337","Selling together"));
-        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "338","Selling together"));
-        listings.add(new Listing("a@a.com",Boolean.TRUE, Boolean.TRUE, "339","Selling together"));*/
-        initRecyclerView();
-    }
-
-    private void initRecyclerView() {
-        RecyclerView recyclerViewTix = findViewById(R.id.recyclerViewTix);
-        RecyclerViewAdapterAllTix recyclerViewAdapterAllTix = new RecyclerViewAdapterAllTix(listings, this);
-        recyclerViewTix.setAdapter(recyclerViewAdapterAllTix);
-        recyclerViewTix.setLayoutManager(new LinearLayoutManager(this));
     }
 }

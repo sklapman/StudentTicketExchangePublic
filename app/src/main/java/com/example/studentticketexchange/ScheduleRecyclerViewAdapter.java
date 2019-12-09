@@ -1,6 +1,7 @@
 package com.example.studentticketexchange;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,12 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
             holder.gameItemParent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Intent allTixIntent = new Intent(view.getContext(), AllTicketsForGame.class);
+                    String game_opponent = game.opponent;
+                    String game_date = game.month + "/" + game.day + "/" + game.year;
+                    allTixIntent.putExtra("OPPONENT",game_opponent);
+                    allTixIntent.putExtra("GAME_DATE",game_date);
+                    mContext.startActivity(allTixIntent);
                     Toast.makeText(mContext, "No tickets available for " + game.opponent +
                             " game on " + dateStr + ". Pleae select a different game.", Toast.LENGTH_LONG).show();
                 }
