@@ -36,24 +36,26 @@
         style="@style/Widget.AppCompat.Button"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginBottom="15dp"
         android:background="#00274C"
         android:padding="5dp"
         android:text="@string/buy"
         android:textColor="#FFFFFF"
         android:textColorLink="#FFFFFF"
         android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_choice_sell"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_choice_title" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_choice_title"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
         android:id="@+id/button_choice_sell"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginTop="15dp"
         android:background="#00274C"
         android:padding="5dp"
         android:text="@string/sell"
@@ -62,16 +64,17 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/id_Navbar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_choice_buy" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/id_Navbar"
+        android:layout_width="match_parent"
         android:layout_height="56dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/nav_botton_menu"
-        android:layout_width="match_parent" />
+        app:menu="@menu/nav_botton_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
