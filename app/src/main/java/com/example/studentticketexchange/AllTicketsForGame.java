@@ -52,6 +52,7 @@ public class AllTicketsForGame extends AppCompatActivity implements View.OnClick
         textViewGameDate = findViewById(R.id.textViewGameDate);
         String getOpponent;
         String getGameDate;
+        String getKey;
 
         buttonSell.setOnClickListener(this);
 
@@ -67,23 +68,26 @@ public class AllTicketsForGame extends AppCompatActivity implements View.OnClick
             if(extras == null) {
                 getOpponent = null;
                 getGameDate = null;
-                textViewGameDate.setText(getGameDate);
+                getKey = null;
                 textViewGameName.setText(getOpponent);
+                textViewGameDate.setText(getGameDate);
 
             } else {
                 getOpponent = extras.getString("OPPONENT");
                 getGameDate = extras.getString("GAME_DATE");
-                textViewGameDate.setText(getGameDate);
+                getKey = extras.getString("GAME_KEY");
                 textViewGameName.setText(getOpponent);
+                textViewGameDate.setText(getGameDate);
             }
         } else {
             getOpponent = (String) savedInstanceState.getSerializable("OPPONENT");
             getGameDate = (String) savedInstanceState.getSerializable("GAME_DATE");
-            textViewGameDate.setText(getGameDate);
+            getKey = (String) savedInstanceState.getSerializable("GAME_KEY");
             textViewGameName.setText(getOpponent);
+            textViewGameDate.setText(getGameDate);
         }
 
-        myRef.orderByChild("opponent").addValueEventListener(new ValueEventListener() {
+        myRef.orderByChild("gameID").equalTo(getKey).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList<Listing> listings = new ArrayList<>();

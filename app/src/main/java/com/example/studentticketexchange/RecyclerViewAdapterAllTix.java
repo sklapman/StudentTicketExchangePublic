@@ -38,7 +38,14 @@ public class RecyclerViewAdapterAllTix extends RecyclerView.Adapter<RecyclerView
     @Override
     public void onBindViewHolder(@NonNull AllTixViewHolder holder, final int position) {
         final String sectionAsString = Integer.toString(listings.get(position).section);
+        final String rowAsString = Integer.toString(listings.get(position).row);
+        final String qtyAsString = Integer.toString(listings.get(position).quantity);
+        final String priceAsString = Double.toString(listings.get(position).price);
         holder.textViewSection.setText(sectionAsString);
+        holder.textViewQty.setText(qtyAsString);
+        holder.textViewPrice.setText(priceAsString);
+        holder.textViewRow.setText(rowAsString);
+//        holder.checkBoxStudentTix.setChecked(listings.get(position).studentTicket);
         holder.parent_layout.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
