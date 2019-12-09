@@ -12,8 +12,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -43,33 +46,71 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
         final Game game = games.get(position);
         String[] months = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
         final String dateStr = months[game.month - 1] + " " + game.day;
+        final ScheduleViewHolder finalSchedHolder = holder;
         holder.dateText.setText(dateStr);
         holder.opponentText.setText(game.opponent);
 
-
-        int numTickets = 0; //Temporarily just set to zero, really we would find all tickets
-        if(numTickets == 0) {
-            holder.availableText.setText("");
-            holder.minPriceText.setText("");
-            holder.avgPriceText.setText("");
-            holder.maxPriceText.setText("");
-            holder.noTicketsText.setText("Sold Out");
-            holder.gameItemParent.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent allTixIntent = new Intent(view.getContext(), AllTicketsForGame.class);
-                    String game_opponent = game.opponent;
-                    String game_date = game.month + "/" + game.day + "/" + game.year;
-                    allTixIntent.putExtra("OPPONENT",game_opponent);
-                    allTixIntent.putExtra("GAME_DATE",game_date);
-                    mContext.startActivity(allTixIntent);
-                    Toast.makeText(mContext, "No tickets available for " + game.opponent +
-                            " game on " + dateStr + ". Pleae select a different game.", Toast.LENGTH_LONG).show();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference().child("listings");
+        myRef.orderByChild("gameID").equalTo(key).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int numTickets = 0;
+                double min = Double.POSITIVE_INFINITY;
+                double max = 0;
+                double sum = 0;
+                for (DataSnapshot ticketSnap : dataSnapshot.getChildren()) {
+                    System.out.println(ticketSnap.getValue().toString());
+                    Listing ticket = ticketSnap.getValue(Listing.class);
+                    int quantity = ticket.quantity;
+                    double price = ticket.price;
+                    if(price < min){
+                        min = price;
+                    }
+                    if(price > max){
+                        max = price;
+                    }
+                    numTickets += quantity;
+                    sum += quantity * price;
                 }
-            });
-        }
-        // else set the numAvailable, minPrice, avgPrice, maxPrice
 
+                if(numTickets == 0) {
+                    finalSchedHolder.availableText.setText("");
+                    finalSchedHolder.minPriceText.setText("");
+                    finalSchedHolder.avgPriceText.setText("");
+                    finalSchedHolder.maxPriceText.setText("");
+                    finalSchedHolder.noTicketsText.setText("Sold Out");
+                    finalSchedHolder.gameItemParent.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Toast.makeText(mContext, "No tickets available for " + game.opponent +
+                                    " game on " + dateStr + ". Pleae select a different game.", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                } else {
+                    finalSchedHolder.availableText.setText(Integer.toString(numTickets));
+                    finalSchedHolder.minPriceText.setText(String.format("%.0f", min));
+                    finalSchedHolder.avgPriceText.setText(String.format("%.0f", sum/numTickets));
+                    finalSchedHolder.maxPriceText.setText(String.format("%.0f", max));
+                    finalSchedHolder.noTicketsText.setText("");
+                    finalSchedHolder.gameItemParent.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent allTixIntent = new Intent(view.getContext(), AllTicketsForGame.class);
+                            String game_opponent = game.opponent;
+                            String game_date = game.month + "/" + game.day + "/" + game.year;
+                            allTixIntent.putExtra("OPPONENT",game_opponent);
+                            allTixIntent.putExtra("GAME_DATE",game_date);
+                            mContext.startActivity(allTixIntent);
+                        }
+                    });
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override
