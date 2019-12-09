@@ -65,7 +65,7 @@ public class SellTicketDetails extends AppCompatActivity implements
         sport = extras.getInt("sport");
 
         TextView sportText = findViewById(R.id.textView_sell_details_sportValue);
-        switch(sport){
+        switch (sport) {
             case 1:
                 sportText.setText("Football");
                 break;
@@ -104,6 +104,9 @@ public class SellTicketDetails extends AppCompatActivity implements
         mMainFrame = (FrameLayout) findViewById(R.id.id_frame);
 
         mMainNav.setOnNavigationItemSelectedListener(this);
+
+        setVisibility(false);
+        findViewById(R.id.textView_sell_details_noGames).setVisibility(View.INVISIBLE);
 
         //Selected ticket values start at null
         gameID_selected = null;
@@ -223,22 +226,6 @@ public class SellTicketDetails extends AppCompatActivity implements
         //Game List
         gameKeys = new ArrayList<>();
         setGamesAvailable();
-
-        //List<String> games = new ArrayList<String>();
-        //game.add("Windsor");
-        //game.add("Clarkson");
-        //game.add("Lake Superior State");
-        //game.add("Western Michigan");
-        //game.add("Minnesota");
-        //game.add("Michigan State");
-        //game.add("Penn State");
-        //game.add("Ohio State");
-        //game.add("Wisconsin");
-
-        //ArrayAdapter<String> dataGame = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, games);
-        //dataGame.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //spinnerSellGame.setAdapter(dataGame);
-        findViewById(R.id.textView_sell_details_noGames).setVisibility(View.INVISIBLE);
     }
 
     @Override
