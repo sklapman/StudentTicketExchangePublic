@@ -308,7 +308,7 @@ public class SellTicketDetails extends AppCompatActivity implements
             Intent portalIntent = new Intent(this, SellTicketOption.class);
             startActivity(portalIntent);
         } else if (view == buttonSellDone) {
-            Double price_selected = -1.0;
+            double price_selected = -1.0;
             try {
                 price_selected = Double.parseDouble(editTextSellPrice.getText().toString());
             } catch(NumberFormatException e) {

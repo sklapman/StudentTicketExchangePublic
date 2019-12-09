@@ -60,10 +60,8 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
                     Intent allTixIntent = new Intent(view.getContext(), AllTicketsForGame.class);
                     String game_opponent = game.opponent;
                     String game_date = game.month + "/" + game.day + "/" + game.year;
-                    String game_id = key;
                     allTixIntent.putExtra("OPPONENT",game_opponent);
                     allTixIntent.putExtra("GAME_DATE",game_date);
-                    allTixIntent.putExtra("GAME_KEY",key);
                     mContext.startActivity(allTixIntent);
                     Toast.makeText(mContext, "No tickets available for " + game.opponent +
                             " game on " + dateStr + ". Pleae select a different game.", Toast.LENGTH_LONG).show();
