@@ -7,7 +7,7 @@ public class Listing {
     public int section;
     public int row;
     public int quantity;
-    public Double price;
+    public double price;
     public Boolean studentTicket;
     public Boolean validated;
     public Boolean negotiable;
@@ -26,7 +26,7 @@ public class Listing {
     */
 
     public Listing(String gameID, String sellerEmail, int section, int row, int quantity,
-                   Double price, Boolean studentTicket, Boolean validated, Boolean negotiatble){
+                   double price, Boolean studentTicket, Boolean validated, Boolean negotiatble){
         this.gameID = gameID;
         this.sellerEmail = sellerEmail;
         this.section = section;
