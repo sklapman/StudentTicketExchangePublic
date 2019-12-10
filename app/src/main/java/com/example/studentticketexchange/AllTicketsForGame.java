@@ -50,8 +50,8 @@ public class AllTicketsForGame extends AppCompatActivity implements View.OnClick
         buttonSell = findViewById(R.id.buttonSell);
         textViewGameName = findViewById(R.id.textViewGameName);
         textViewGameDate = findViewById(R.id.textViewGameDate);
-        String getOpponent;
-        String getGameDate;
+        final String getOpponent;
+        final String getGameDate;
         String getKey;
 
         buttonSell.setOnClickListener(this);
@@ -91,12 +91,15 @@ public class AllTicketsForGame extends AppCompatActivity implements View.OnClick
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList<Listing> listings = new ArrayList<>();
-                for(DataSnapshot postSnapshot: dataSnapshot.getChildren()){
-                   Listing listing = postSnapshot.getValue(Listing.class);
+                ArrayList<String> listingKeys = new ArrayList<>();
+                for(DataSnapshot listingSnapshot: dataSnapshot.getChildren()){
+                   String listingKey = listingSnapshot.getKey();
+                   Listing listing = listingSnapshot.getValue(Listing.class);
                    listings.add(listing);
+                   listingKeys.add(listingKey);
                 }
 
-                RecyclerViewAdapterAllTix recyclerViewAdapterAllTix = new RecyclerViewAdapterAllTix(listings, AllTicketsForGame.this);
+                RecyclerViewAdapterAllTix recyclerViewAdapterAllTix = new RecyclerViewAdapterAllTix(listings, listingKeys, getOpponent, getGameDate,AllTicketsForGame.this);
                 recyclerViewTix.setAdapter(recyclerViewAdapterAllTix);
                 recyclerViewTix.setLayoutManager(new LinearLayoutManager(AllTicketsForGame  .this));
             }

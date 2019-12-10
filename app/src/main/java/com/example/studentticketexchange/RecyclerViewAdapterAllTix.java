@@ -1,6 +1,7 @@
 package com.example.studentticketexchange;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,11 +19,17 @@ import java.util.ArrayList;
 public class RecyclerViewAdapterAllTix extends RecyclerView.Adapter<RecyclerViewAdapterAllTix.AllTixViewHolder> {
 
     private ArrayList<Listing> listings = new ArrayList<>();
+    private ArrayList<String> listingKeys = new ArrayList();
+    private String opponent;
+    private String gameDate;
     private Context mContext;
 
 
-    RecyclerViewAdapterAllTix(ArrayList<Listing> listings, Context mContext) {
+    RecyclerViewAdapterAllTix(ArrayList<Listing> listings, ArrayList<String> listingKeys, String opponent, String gameDate, Context mContext) {
         this.listings = listings;
+        this.listingKeys = listingKeys;
+        this.opponent = opponent;
+        this.gameDate = gameDate;
         this.mContext = mContext;
     }
 
@@ -37,19 +44,29 @@ public class RecyclerViewAdapterAllTix extends RecyclerView.Adapter<RecyclerView
 
     @Override
     public void onBindViewHolder(@NonNull AllTixViewHolder holder, final int position) {
-        final String sectionAsString = Integer.toString(listings.get(position).section);
-        final String rowAsString = Integer.toString(listings.get(position).row);
-        final String qtyAsString = Integer.toString(listings.get(position).quantity);
-        final String priceAsString = Double.toString(listings.get(position).price);
+        final Listing listing = listings.get(position);
+        final String key = listingKeys.get(position);
+        final String putOpponent = opponent;
+        final String putGameDate = gameDate;
+        final String sectionAsString = Integer.toString(listing.section);
+        final String rowAsString = Integer.toString(listing.row);
+        final String qtyAsString = Integer.toString(listing.quantity);
+        final String priceAsString = Double.toString(listing.price);
+        final Boolean studentChecked = listing.studentTicket;
         holder.textViewSection.setText(sectionAsString);
         holder.textViewQty.setText(qtyAsString);
         holder.textViewPrice.setText(priceAsString);
         holder.textViewRow.setText(rowAsString);
-//        holder.checkBoxStudentTix.setChecked(listings.get(position).studentTicket);
+        holder.checkBoxStudentTix.setChecked(studentChecked);
         holder.parent_layout.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "Section "+sectionAsString, Toast.LENGTH_SHORT).show();
+                Intent buyTicketDetailsIntent = new Intent(v.getContext(), BuyTicketDetails.class);
+                buyTicketDetailsIntent.putExtra("LISTING_KEY", key);
+                buyTicketDetailsIntent.putExtra("OPPONENT",putOpponent);
+                buyTicketDetailsIntent.putExtra("GAME_DATE",putGameDate);
+                mContext.startActivity(buyTicketDetailsIntent);
+//                Toast.makeText(mContext, "Section "+sectionAsString, Toast.LENGTH_SHORT).show();
             }
         });
     }

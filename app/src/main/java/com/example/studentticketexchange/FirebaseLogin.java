@@ -45,7 +45,7 @@ public class FirebaseLogin extends AppCompatActivity implements View.OnClickList
         //#2
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        Toast.makeText(this, "User: "+currentUser, Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "User: "+currentUser, Toast.LENGTH_LONG).show();
     }
 
     @Override

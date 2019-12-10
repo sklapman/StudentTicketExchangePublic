@@ -1,6 +1,7 @@
 package com.example.studentticketexchange;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -16,6 +17,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class BuyTicketDetails extends AppCompatActivity implements
         TextView.OnEditorActionListener,
@@ -23,9 +29,10 @@ public class BuyTicketDetails extends AppCompatActivity implements
         BottomNavigationView.OnNavigationItemSelectedListener {
 
     Button buttonBuyBack, buttonBuyContactSeller;
-    TextView textViewBuySportSelected, textViewBuyGameSelected, textViewBuySectionSelected,
+    TextView textViewBuyGameSelected, textViewBuyDateSelected, textViewBuySectionSelected,
             textViewBuyRowSelected, textViewBuyQuantitySelected, textViewBuyPriceSelected,
             textViewBuyStudentTicketSelected, textViewBuyValidatedSelected, textViewBuyNegotiableSelected;
+    String getKey, getOpponent, getGameDate;
 
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
@@ -37,7 +44,7 @@ public class BuyTicketDetails extends AppCompatActivity implements
         setContentView(R.layout.activity_buy_ticket_details);
 
         //implement listeners
-        textViewBuySportSelected = findViewById(R.id.textViewBuySportSelected);
+        textViewBuyDateSelected = findViewById(R.id.textViewBuyDateSelected);
         textViewBuyGameSelected = findViewById(R.id.textViewBuyGameSelected);
         textViewBuySectionSelected = findViewById(R.id.textViewBuySectionSelected);
         textViewBuyRowSelected = findViewById(R.id.textViewBuyRowSelected);
@@ -59,6 +66,84 @@ public class BuyTicketDetails extends AppCompatActivity implements
 
         mMainNav.setOnNavigationItemSelectedListener(this);
 
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                getKey = null;
+                getOpponent = null;
+                getGameDate = null;
+
+            } else {
+                getKey = extras.getString("LISTING_KEY");
+                getOpponent = extras.getString("OPPONENT");
+                getGameDate = extras.getString("GAME_DATE");
+            }
+        } else {
+            getKey = (String) savedInstanceState.getSerializable("LISTING_KEY");
+            getOpponent = (String) savedInstanceState.getSerializable("OPPONENT");
+            getGameDate = (String) savedInstanceState.getSerializable("GAME_DATE");
+        }
+
+//        Toast.makeText(BuyTicketDetails.this, "getKey: "+getKey, Toast.LENGTH_SHORT).show();
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference myRef = database.getReference("listings");
+
+        myRef.orderByKey().equalTo(getKey).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                Listing findListing = dataSnapshot.getValue(Listing.class);
+
+//                TextView textViewBuySportSelected, textViewBuyGameSelected, textViewBuySectionSelected,
+//                        textViewBuyRowSelected, textViewBuyQuantitySelected, textViewBuyPriceSelected,
+//                        textViewBuyStudentTicketSelected, textViewBuyValidatedSelected, textViewBuyNegotiableSelected;
+
+                String findListingSellerEmail = findListing.sellerEmail;
+                String findListingGameID = findListing.gameID;
+                String findListingPrice = Double.toString(findListing.price);
+                String findListingQuantity = Integer.toString(findListing.quantity);
+                String findListingSection = Integer.toString(findListing.section);
+                String findListingRow = Integer.toString(findListing.row);
+                String findListingStudentTicket = Boolean.toString(findListing.studentTicket);
+                String findListingValidated = Boolean.toString(findListing.validated);
+                String findListingNegotiable = Boolean.toString(findListing.negotiable);
+
+                textViewBuyGameSelected.setText(getOpponent);
+                textViewBuyDateSelected.setText(getGameDate);
+                textViewBuyPriceSelected.setText(findListingPrice);
+                textViewBuyQuantitySelected.setText(findListingQuantity);
+                textViewBuySectionSelected.setText(findListingSection);
+                textViewBuyRowSelected.setText(findListingRow);
+                textViewBuyStudentTicketSelected.setText(findListingStudentTicket);
+                textViewBuyValidatedSelected.setText(findListingValidated);
+                textViewBuyNegotiableSelected.setText(findListingNegotiable);
+
+
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 
     @Override
@@ -70,7 +155,7 @@ public class BuyTicketDetails extends AppCompatActivity implements
             startActivity(portalIntent);
 
         } else if (view == buttonBuyContactSeller) {
-
+            //Need to complete
         }
 
 
