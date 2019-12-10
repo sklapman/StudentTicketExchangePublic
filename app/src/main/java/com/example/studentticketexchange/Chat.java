@@ -30,6 +30,8 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil;
 
@@ -62,8 +64,18 @@ public class Chat extends AppCompatActivity implements BottomNavigationView.OnNa
 
         mMainNav.setOnNavigationItemSelectedListener(this);
 
-        // TEST USERS
+        // CHAT USERS
+
+        // Take email of current user, cut the domain, and use it as name of the user 1
+        //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        //String email = user.getEmail();
+        //int index = email.indexOf('@');
+        //TestUser1 = email.substring(0,index);
+
+        //Fixed user 1 - just for testing
         TestUser1 = "aaaaaa";
+
+        //Fixed user 2 - just for testing
         TestUser2 = "bbbbbb";
 
         layout = (LinearLayout) findViewById(R.id.layout1);
