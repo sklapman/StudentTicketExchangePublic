@@ -58,6 +58,8 @@ public class InboxRecyclerViewAdapter extends RecyclerView.Adapter <InboxRecycle
             @Override
             public void onClick(View view) {
                 Toast.makeText(iContext, inboxChats.get(position).name, Toast.LENGTH_SHORT).show();
+                ChatDetails.chatWith = "bbbbbb";
+                //ChatDetails.chatWith = inboxChats.get(position).name;
             }
         });
 

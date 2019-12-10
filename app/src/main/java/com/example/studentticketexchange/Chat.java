@@ -72,11 +72,15 @@ public class Chat extends AppCompatActivity implements BottomNavigationView.OnNa
         //int index = email.indexOf('@');
         //TestUser1 = email.substring(0,index);
 
+        //Take name of the second user from java class
+        TestUser2 = ChatDetails.chatWith;
+        
         //Fixed user 1 - just for testing
         TestUser1 = "aaaaaa";
 
         //Fixed user 2 - just for testing
-        TestUser2 = "bbbbbb";
+        // TestUser2 = "bbbbbb";
+
 
         layout = (LinearLayout) findViewById(R.id.layout1);
         layout_2 = (RelativeLayout)findViewById(R.id.layout2);
