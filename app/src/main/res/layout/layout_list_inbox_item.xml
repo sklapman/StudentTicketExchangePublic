@@ -4,12 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="wrap_content"
     android:id="@+id/parent_layout_Inbox"
-    android:padding="30dp">
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    android:paddingTop="20dp">
 
     <ImageView
         android:id="@+id/imageView_InboxAvatar"
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:paddingBottom="20dp"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -17,9 +20,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/imageView_InboxAvatar"
+        android:layout_alignTop="@id/imageView_InboxAvatar"
         android:layout_centerVertical="true"
-        android:layout_margin="30dp"
+        android:paddingLeft="20dp"
         android:textColor="#000"
         android:textSize="17sp"
         android:text="Name" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignBottom="@id/imageView_InboxAvatar"
+        android:background="@android:color/darker_gray"/>
+
 </RelativeLayout>
