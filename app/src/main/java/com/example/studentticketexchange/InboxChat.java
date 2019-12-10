@@ -13,7 +13,7 @@ public class InboxChat {
     InboxChat(String name, String photoTitle) {
         this.name = name;
         //this.imageUri = "images/" + photoTitle + ".png";
-        this.imageUri = "Anonymous_Avatar.png";
+        this.imageUri = "Anonymous_Avatar2.png";
 
         try {
             profilePic = File.createTempFile(photoTitle, "png");
