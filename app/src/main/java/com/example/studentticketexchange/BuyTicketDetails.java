@@ -71,6 +71,9 @@ public class BuyTicketDetails extends AppCompatActivity implements
 
         } else if (view == buttonBuyContactSeller) {
 
+            ChatDetails.chatWith = "bbbbbb";
+            view.getContext().startActivity(new Intent(view.getContext(), Chat.class));
+
         }
 
 

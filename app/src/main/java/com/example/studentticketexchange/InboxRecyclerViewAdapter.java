@@ -60,7 +60,6 @@ public class InboxRecyclerViewAdapter extends RecyclerView.Adapter <InboxRecycle
             public void onClick(View view) {
                 Toast.makeText(iContext, inboxChats.get(position).name, Toast.LENGTH_SHORT).show();
                 ChatDetails.chatWith = "bbbbbb";
-
                 view.getContext().startActivity(new Intent(view.getContext(), Chat.class));
 
             }
