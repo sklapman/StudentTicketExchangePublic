@@ -30,10 +30,10 @@ public class Inbox extends AppCompatActivity implements BottomNavigationView.OnN
         setContentView(R.layout.activity_inbox);
         initInboxChats();
 
-        //mMainNav = (BottomNavigationView) findViewById(R.id.id_Navbar);
+        mMainNav = (BottomNavigationView) findViewById(R.id.id_Navbar);
         mMainFrame = (FrameLayout) findViewById(R.id.id_frame);
 
-        //mMainNav.setOnNavigationItemSelectedListener(this);
+        mMainNav.setOnNavigationItemSelectedListener(this);
     }
 
     private void initInboxChats() {
