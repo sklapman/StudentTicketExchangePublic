@@ -2,6 +2,8 @@ package com.example.studentticketexchange;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,20 +15,44 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+
 public class Inbox extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
+    private ArrayList<InboxChat> inboxChats;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inbox);
+        initInboxChats();
 
-        mMainNav = (BottomNavigationView) findViewById(R.id.id_Navbar);
+        //mMainNav = (BottomNavigationView) findViewById(R.id.id_Navbar);
         mMainFrame = (FrameLayout) findViewById(R.id.id_frame);
 
-        mMainNav.setOnNavigationItemSelectedListener(this);
+        //mMainNav.setOnNavigationItemSelectedListener(this);
+    }
+
+    private void initInboxChats() {
+        inboxChats = new ArrayList<>();
+        inboxChats.add(new InboxChat("pedro", "pedro_pic"));
+        inboxChats.add(new InboxChat("andy", "andy_pic"));
+        inboxChats.add(new InboxChat("sandy", "sandy_pic"));
+
+        initRecyclerViewInbox();
+
+    }
+
+    private  void initRecyclerViewInbox () {
+        RecyclerView recyclerViewInbox = findViewById(R.id.recycler_view_inbox);
+        InboxRecyclerViewAdapter inboxRecyclerViewAdapter = new InboxRecyclerViewAdapter(inboxChats, this);
+        recyclerViewInbox.setAdapter(inboxRecyclerViewAdapter);
+        recyclerViewInbox.setLayoutManager(new LinearLayoutManager(this));
+
+
     }
 
     @Override
