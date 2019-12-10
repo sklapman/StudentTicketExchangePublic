@@ -1,6 +1,7 @@
 package com.example.studentticketexchange;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -59,7 +60,8 @@ public class InboxRecyclerViewAdapter extends RecyclerView.Adapter <InboxRecycle
             public void onClick(View view) {
                 Toast.makeText(iContext, inboxChats.get(position).name, Toast.LENGTH_SHORT).show();
                 ChatDetails.chatWith = "bbbbbb";
-                //ChatDetails.chatWith = inboxChats.get(position).name;
+                view.getContext().startActivity(new Intent(view.getContext(), Chat.class));
+
             }
         });
 
