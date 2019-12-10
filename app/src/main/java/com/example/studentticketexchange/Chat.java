@@ -74,7 +74,7 @@ public class Chat extends AppCompatActivity implements BottomNavigationView.OnNa
 
         //Take name of the second user from java class
         TestUser2 = ChatDetails.chatWith;
-        
+
         //Fixed user 1 - just for testing
         TestUser1 = "aaaaaa";
 
