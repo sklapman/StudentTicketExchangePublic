@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,7 +29,7 @@ public class BuyTicketDetails extends AppCompatActivity implements
         View.OnClickListener,
         BottomNavigationView.OnNavigationItemSelectedListener {
 
-    Button buttonBuyBack, buttonBuyContactSeller;
+    Button buttonBuyBack, buttonBuyContactSeller, buttonDelete;
     TextView textViewBuyGameSelected, textViewBuyDateSelected, textViewBuySectionSelected,
             textViewBuyRowSelected, textViewBuyQuantitySelected, textViewBuyPriceSelected,
             textViewBuyStudentTicketSelected, textViewBuyValidatedSelected, textViewBuyNegotiableSelected;
@@ -36,6 +37,8 @@ public class BuyTicketDetails extends AppCompatActivity implements
 
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
+
+    private FirebaseAuth mAuth;
 
 
     @Override
@@ -56,15 +59,21 @@ public class BuyTicketDetails extends AppCompatActivity implements
 
         buttonBuyBack = findViewById(R.id.buttonBuyBack);
         buttonBuyContactSeller = findViewById(R.id.buttonBuyContactSeller);
+        buttonDelete = findViewById(R.id.buttonDelete);
 
         buttonBuyBack.setOnClickListener(this);
         buttonBuyContactSeller.setOnClickListener(this);
+        buttonDelete.setOnClickListener(this);
 
         mMainNav = (BottomNavigationView) findViewById(R.id.id_Navbar);
         mMainFrame = (FrameLayout) findViewById(R.id.id_frame);
 
 
         mMainNav.setOnNavigationItemSelectedListener(this);
+
+        mAuth = FirebaseAuth.getInstance();
+        final String UserEmail = mAuth.getCurrentUser().getEmail();
+
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -118,7 +127,14 @@ public class BuyTicketDetails extends AppCompatActivity implements
                 textViewBuyValidatedSelected.setText(findListingValidated);
                 textViewBuyNegotiableSelected.setText(findListingNegotiable);
 
+//                Toast.makeText(BuyTicketDetails.this, "Seller Email: "+findListingSellerEmail+", User Email: "+UserEmail, Toast.LENGTH_SHORT).show();
 
+                if(findListingSellerEmail.equals(UserEmail)){
+//                    Toast.makeText(BuyTicketDetails.this, "SAME USER", Toast.LENGTH_SHORT).show();
+                    buttonDelete.setVisibility(View.VISIBLE);
+                } else {
+//                    Toast.makeText(BuyTicketDetails.this, "DIFFERENT USER", Toast.LENGTH_SHORT).show();
+                }
 
             }
 
@@ -149,6 +165,9 @@ public class BuyTicketDetails extends AppCompatActivity implements
     @Override
     public void onClick(View view) {
 
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference myRef = database.getReference("listings");
+
         if (view == buttonBuyBack) {
             //navigation between pages with buttons
             Intent portalIntent = new Intent(this, AllTicketsForGame.class);
@@ -156,6 +175,36 @@ public class BuyTicketDetails extends AppCompatActivity implements
 
         } else if (view == buttonBuyContactSeller) {
             //Need to complete
+        } else if (view == buttonDelete) {
+
+            myRef.orderByKey().equalTo(getKey).addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                    myRef.child(getKey).setValue(null);
+                }
+
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                }
+
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+            Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show();
         }
 
 
