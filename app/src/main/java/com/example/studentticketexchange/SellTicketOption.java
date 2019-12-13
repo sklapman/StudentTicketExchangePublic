@@ -64,7 +64,7 @@ public class SellTicketOption extends AppCompatActivity implements
     public void onClick(View view) {
         Intent sellIntent = new Intent(this, SellTicketDetails.class);
         if (view == buttonSellBack) {
-            Intent portalIntent = new Intent(this, MainActivity.class);
+            Intent portalIntent = new Intent(this, Schedule.class);
             startActivity(portalIntent);
         } else if (view == buttonSellFootball) {
             sellIntent.putExtra("sport", 1);
