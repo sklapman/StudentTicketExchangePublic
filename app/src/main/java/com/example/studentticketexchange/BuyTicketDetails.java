@@ -103,12 +103,7 @@ public class BuyTicketDetails extends AppCompatActivity implements
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Listing findListing = dataSnapshot.getValue(Listing.class);
 
-//                TextView textViewBuySportSelected, textViewBuyGameSelected, textViewBuySectionSelected,
-//                        textViewBuyRowSelected, textViewBuyQuantitySelected, textViewBuyPriceSelected,
-//                        textViewBuyStudentTicketSelected, textViewBuyValidatedSelected, textViewBuyNegotiableSelected;
-
                 String findListingSellerEmail = findListing.sellerEmail;
-                String findListingGameID = findListing.gameID;
                 String findListingPrice = Double.toString(findListing.price);
                 String findListingQuantity = Integer.toString(findListing.quantity);
                 String findListingSection = Integer.toString(findListing.section);
@@ -127,13 +122,8 @@ public class BuyTicketDetails extends AppCompatActivity implements
                 textViewBuyValidatedSelected.setText(findListingValidated);
                 textViewBuyNegotiableSelected.setText(findListingNegotiable);
 
-//                Toast.makeText(BuyTicketDetails.this, "Seller Email: "+findListingSellerEmail+", User Email: "+UserEmail, Toast.LENGTH_SHORT).show();
-
                 if(findListingSellerEmail.equals(UserEmail)){
-//                    Toast.makeText(BuyTicketDetails.this, "SAME USER", Toast.LENGTH_SHORT).show();
                     buttonDelete.setVisibility(View.VISIBLE);
-                } else {
-//                    Toast.makeText(BuyTicketDetails.this, "DIFFERENT USER", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -170,8 +160,37 @@ public class BuyTicketDetails extends AppCompatActivity implements
 
         if (view == buttonBuyBack) {
             //navigation between pages with buttons
-            Intent portalIntent = new Intent(this, AllTicketsForGame.class);
-            startActivity(portalIntent);
+
+            myRef.orderByKey().equalTo(getKey).addChildEventListener(new ChildEventListener() {
+                         @Override
+                         public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                             Listing findListing = dataSnapshot.getValue(Listing.class);
+                             String findListingGameID = findListing.gameID;
+                             Intent portalIntent = new Intent(BuyTicketDetails.this, AllTicketsForGame.class);
+                             portalIntent.putExtra("GAME_KEY", findListingGameID);
+                             startActivity(portalIntent);
+                         }
+
+                         @Override
+                         public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                         }
+
+                         @Override
+                         public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                         }
+
+                         @Override
+                         public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                         }
+
+                         @Override
+                         public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                         }
+                     });
 
         } else if (view == buttonBuyContactSeller) {
             //Need to complete
