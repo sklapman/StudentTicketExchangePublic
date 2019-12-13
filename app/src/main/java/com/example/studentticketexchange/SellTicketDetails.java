@@ -37,7 +37,7 @@ public class SellTicketDetails extends AppCompatActivity implements
         BottomNavigationView.OnNavigationItemSelectedListener,
         AdapterView.OnItemSelectedListener {
 
-    Button buttonSellBack, buttonSellDone;
+    Button buttonSellDone;
     EditText editTextSellPrice;
     Spinner spinnerSellGame, spinnerSellSection, spinnerSellRow, spinnerSellQuantity,
             spinnerSellStudentTicket, spinnerSellValidated, spinnerSellNegotiable;
@@ -78,7 +78,6 @@ public class SellTicketDetails extends AppCompatActivity implements
         }
 
         //implement listeners
-        buttonSellBack = findViewById(R.id.button_sell_details_back);
         buttonSellDone = findViewById(R.id.button_sell_details_done);
         editTextSellPrice = findViewById(R.id.editText_sell_details_price);
         spinnerSellGame = findViewById(R.id.spinner_sell_details_game);
@@ -91,7 +90,6 @@ public class SellTicketDetails extends AppCompatActivity implements
 
         //activate listeners
         buttonSellDone.setOnClickListener(this);
-        buttonSellBack.setOnClickListener(this);
         spinnerSellGame.setOnItemSelectedListener(this);
         spinnerSellSection.setOnItemSelectedListener(this);
         spinnerSellRow.setOnItemSelectedListener(this);
@@ -291,10 +289,7 @@ public class SellTicketDetails extends AppCompatActivity implements
 
     @Override
     public void onClick(View view) {
-        if (view == buttonSellBack) {
-            Intent portalIntent = new Intent(this, SellTicketOption.class);
-            startActivity(portalIntent);
-        } else if (view == buttonSellDone) {
+        if (view == buttonSellDone) {
             double price_selected = -1.0;
             try {
                 price_selected = Double.parseDouble(editTextSellPrice.getText().toString());

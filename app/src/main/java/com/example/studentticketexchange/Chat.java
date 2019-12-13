@@ -48,7 +48,7 @@ public class Chat extends AppCompatActivity implements BottomNavigationView.OnNa
     ImageView sendButton;
     EditText messageArea;
     ScrollView scrollView;
-    Firebase reference1, reference2;
+    Firebase reference1, reference2, reference3, reference4;
 
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
@@ -67,16 +67,16 @@ public class Chat extends AppCompatActivity implements BottomNavigationView.OnNa
         // CHAT USERS
 
         // Take email of current user, cut the domain, and use it as name of the user 1
-        //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        //String email = user.getEmail();
-        //int index = email.indexOf('@');
-        //TestUser1 = email.substring(0,index);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String email = user.getEmail();
+        int index = email.indexOf('@');
+        TestUser1 = email.substring(0,index);
 
         //Take name of the second user from java class
         TestUser2 = ChatDetails.chatWith;
 
         //Fixed user 1 - just for testing
-        TestUser1 = "aaaaaa";
+        //TestUser1 = "aaaaaa";
 
         //Fixed user 2 - just for testing
         // TestUser2 = "bbbbbb";
@@ -92,8 +92,12 @@ public class Chat extends AppCompatActivity implements BottomNavigationView.OnNa
         //reference1 = new Firebase("https://studentticketsexchange.firebaseio.com/messages/" + UserDetails.username + "_" + UserDetails.chatWith);
        //reference2 = new Firebase("https://studentticketsexchange.firebaseio.com/messages/" + UserDetails.chatWith + "_" + UserDetails.username);
 
-        reference1 = new Firebase("https://studentticketsexchange.firebaseio.com/messages/" + TestUser1 + "_" + TestUser2);
-        reference2 = new Firebase("https://studentticketsexchange.firebaseio.com/messages/" + TestUser2 + "_" + TestUser1);
+        reference1 = new Firebase("https://studentticketsexchange.firebaseio.com/messages/" + TestUser1 + "/" + TestUser2);
+        reference2 = new Firebase("https://studentticketsexchange.firebaseio.com/messages/" + TestUser2 + "/" + TestUser1);
+
+        reference3 = new Firebase("https://studentticketsexchange.firebaseio.com/chats/" + TestUser1 + "_" + TestUser2);
+        reference4 = new Firebase("https://studentticketsexchange.firebaseio.com/chats/" + TestUser2 + "_" + TestUser1);
+
 
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +112,18 @@ public class Chat extends AppCompatActivity implements BottomNavigationView.OnNa
                     reference1.push().setValue(map);
                     reference2.push().setValue(map);
                     messageArea.setText("");
+
+                    //adding chat to the list of existing chats
+                    Map<String, String> map3 = new HashMap<String, String>();
+                    map3.put("userInbox", TestUser1);
+                    map3.put("chatWith", TestUser2);
+                    reference3.setValue(map3);
+
+                    Map<String, String> map4 = new HashMap<String, String>();
+                    map4.put("userInbox", TestUser2);
+                    map4.put("chatWith", TestUser1);
+                    reference4.setValue(map4);
+
                 }
             }
         });
