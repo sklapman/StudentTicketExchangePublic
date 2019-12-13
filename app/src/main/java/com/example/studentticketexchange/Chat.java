@@ -67,16 +67,16 @@ public class Chat extends AppCompatActivity implements BottomNavigationView.OnNa
         // CHAT USERS
 
         // Take email of current user, cut the domain, and use it as name of the user 1
-        //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        //String email = user.getEmail();
-        //int index = email.indexOf('@');
-        //TestUser1 = email.substring(0,index);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String email = user.getEmail();
+        int index = email.indexOf('@');
+        TestUser1 = email.substring(0,index);
 
         //Take name of the second user from java class
         TestUser2 = ChatDetails.chatWith;
 
         //Fixed user 1 - just for testing
-        TestUser1 = "aaaaaa";
+        //TestUser1 = "aaaaaa";
 
         //Fixed user 2 - just for testing
         // TestUser2 = "bbbbbb";
@@ -92,8 +92,8 @@ public class Chat extends AppCompatActivity implements BottomNavigationView.OnNa
         //reference1 = new Firebase("https://studentticketsexchange.firebaseio.com/messages/" + UserDetails.username + "_" + UserDetails.chatWith);
        //reference2 = new Firebase("https://studentticketsexchange.firebaseio.com/messages/" + UserDetails.chatWith + "_" + UserDetails.username);
 
-        reference1 = new Firebase("https://studentticketsexchange.firebaseio.com/messages/" + TestUser1 + "_" + TestUser2);
-        reference2 = new Firebase("https://studentticketsexchange.firebaseio.com/messages/" + TestUser2 + "_" + TestUser1);
+        reference1 = new Firebase("https://studentticketsexchange.firebaseio.com/messages/" + TestUser1 + "/" + TestUser2);
+        reference2 = new Firebase("https://studentticketsexchange.firebaseio.com/messages/" + TestUser2 + "/" + TestUser1);
 
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
