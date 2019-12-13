@@ -164,6 +164,7 @@ public class Schedule extends AppCompatActivity implements View.OnClickListener,
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.itemInbox:
+
                 Intent InboxIntent = new Intent(this, Inbox.class);
                 startActivity(InboxIntent);
                 return true;
