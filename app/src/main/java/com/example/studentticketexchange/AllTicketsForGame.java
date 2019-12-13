@@ -137,12 +137,13 @@ public class AllTicketsForGame extends AppCompatActivity implements View.OnClick
             case R.id.itemSchedule:
                 Intent ScheduleIntent = new Intent(this, Schedule.class);
                 startActivity(ScheduleIntent);
-                 return true;
+                return true;
 
             case R.id.itemSell:
                 Intent SellIntent = new Intent(this, SellTicketOption.class);
                 startActivity(SellIntent);
                  return true;
+
             default:
                 return false;
 

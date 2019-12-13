@@ -66,10 +66,11 @@ public class BuyTicketDetails extends AppCompatActivity implements
         buttonDelete.setOnClickListener(this);
 
         mMainNav = (BottomNavigationView) findViewById(R.id.id_Navbar);
-        mMainFrame = (FrameLayout) findViewById(R.id.id_frame);
+        //mMainFrame = (FrameLayout) findViewById(R.id.id_frame);
 
 
         mMainNav.setOnNavigationItemSelectedListener(this);
+
 
         mAuth = FirebaseAuth.getInstance();
         final String UserEmail = mAuth.getCurrentUser().getEmail();
@@ -250,6 +251,7 @@ public class BuyTicketDetails extends AppCompatActivity implements
             case R.id.itemInbox:
                 Intent InboxIntent = new Intent(this, Inbox.class);
                 startActivity(InboxIntent);
+                //mMainNav.setSelectedItemId(R.id.itemInbox);
                 return true;
 
             case R.id.itemProfile:
