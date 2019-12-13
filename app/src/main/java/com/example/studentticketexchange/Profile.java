@@ -28,6 +28,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener, 
 
     private FirebaseAuth mAuth;
 
+
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
 
@@ -42,6 +43,8 @@ public class Profile extends AppCompatActivity implements View.OnClickListener, 
 
         buttonLogout.setOnClickListener(this);
         mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        textViewUserName.setText(currentUser.getEmail());
 
         mMainNav = (BottomNavigationView) findViewById(R.id.id_Navbar);
         mMainFrame = (FrameLayout) findViewById(R.id.id_frame);
@@ -150,6 +153,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener, 
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
+
         Toast.makeText(this, "User: "+currentUser, Toast.LENGTH_LONG).show();
     }
 
