@@ -95,8 +95,8 @@ public class Chat extends AppCompatActivity implements BottomNavigationView.OnNa
         reference1 = new Firebase("https://studentticketsexchange.firebaseio.com/messages/" + TestUser1 + "/" + TestUser2);
         reference2 = new Firebase("https://studentticketsexchange.firebaseio.com/messages/" + TestUser2 + "/" + TestUser1);
 
-        reference3 = new Firebase("https://studentticketsexchange.firebaseio.com/chats/" + TestUser1 + "/" + TestUser2);
-        reference4 = new Firebase("https://studentticketsexchange.firebaseio.com/chats/" + TestUser2 + "/" + TestUser1);
+        reference3 = new Firebase("https://studentticketsexchange.firebaseio.com/chats/" + TestUser1 + "_" + TestUser2);
+        reference4 = new Firebase("https://studentticketsexchange.firebaseio.com/chats/" + TestUser2 + "_" + TestUser1);
 
 
         sendButton.setOnClickListener(new View.OnClickListener() {
@@ -115,10 +115,12 @@ public class Chat extends AppCompatActivity implements BottomNavigationView.OnNa
 
                     //adding chat to the list of existing chats
                     Map<String, String> map3 = new HashMap<String, String>();
+                    map3.put("userInbox", TestUser1);
                     map3.put("chatWith", TestUser2);
                     reference3.setValue(map3);
 
                     Map<String, String> map4 = new HashMap<String, String>();
+                    map4.put("userInbox", TestUser2);
                     map4.put("chatWith", TestUser1);
                     reference4.setValue(map4);
 

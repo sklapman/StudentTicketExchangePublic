@@ -34,6 +34,8 @@ public class Inbox extends AppCompatActivity implements BottomNavigationView.OnN
         mMainFrame = (FrameLayout) findViewById(R.id.id_frame);
 
         mMainNav.setOnNavigationItemSelectedListener(this);
+
+
     }
 
     private void initInboxChats() {
