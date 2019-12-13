@@ -34,6 +34,7 @@ public class Inbox extends AppCompatActivity implements BottomNavigationView.OnN
         mMainFrame = (FrameLayout) findViewById(R.id.id_frame);
 
         mMainNav.setOnNavigationItemSelectedListener(this);
+
     }
 
     private void initInboxChats() {
@@ -67,6 +68,7 @@ public class Inbox extends AppCompatActivity implements BottomNavigationView.OnN
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.itemChat) {
+
             Intent searchIntent = new Intent(this, Chat.class);
             startActivity(searchIntent);
         }
@@ -124,6 +126,7 @@ public class Inbox extends AppCompatActivity implements BottomNavigationView.OnN
                 return true;
 
             case R.id.itemProfile:
+                //mMainNav.setSelectedItemId(R.id.itemProfile);
                 Intent ProfileIntent = new Intent(this, Profile.class);
                 startActivity(ProfileIntent);
                 return true;
