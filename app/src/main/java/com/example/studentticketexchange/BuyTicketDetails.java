@@ -33,7 +33,7 @@ public class BuyTicketDetails extends AppCompatActivity implements
     TextView textViewBuyGameSelected, textViewBuyDateSelected, textViewBuySectionSelected,
             textViewBuyRowSelected, textViewBuyQuantitySelected, textViewBuyPriceSelected,
             textViewBuyStudentTicketSelected, textViewBuyValidatedSelected, textViewBuyNegotiableSelected;
-    String getKey, getOpponent, getGameDate;
+    String getKey, getOpponent, getGameDate, sellerEmail;
 
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
@@ -111,6 +111,8 @@ public class BuyTicketDetails extends AppCompatActivity implements
                 String findListingStudentTicket = Boolean.toString(findListing.studentTicket);
                 String findListingValidated = Boolean.toString(findListing.validated);
                 String findListingNegotiable = Boolean.toString(findListing.negotiable);
+
+                sellerEmail = findListing.sellerEmail;
 
                 textViewBuyGameSelected.setText(getOpponent);
                 textViewBuyDateSelected.setText(getGameDate);
@@ -193,7 +195,14 @@ public class BuyTicketDetails extends AppCompatActivity implements
                      });
 
         } else if (view == buttonBuyContactSeller) {
-            //Need to complete
+            //ChatDetails.chatWith = "bbbbbb";
+
+            int index = sellerEmail.indexOf('@');
+            sellerEmail = sellerEmail.substring(0,index);
+
+            ChatDetails.chatWith = sellerEmail;
+            view.getContext().startActivity(new Intent(view.getContext(), Chat.class));
+
         } else if (view == buttonDelete) {
 
             myRef.orderByKey().equalTo(getKey).addChildEventListener(new ChildEventListener() {
